@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Performance optimization
-Sitemap: https://pbnplumbingco-com.netlify.app/sitemap.xml
+Sitemap: https://pbmplumbingco.com/sitemap.xml
 
 # Block common bot traps
 Disallow: /cgi-bin/
