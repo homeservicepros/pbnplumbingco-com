@@ -1,0 +1,308 @@
+
+/* Custom styles for conversion optimization */
+.phone-button {
+  animation: pulse 2s infinite;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.phone-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+  100% { transform: scale(1); }
+}
+
+.sticky-phone {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  animation: slideInRight 0.5s ease-out;
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+/* AI Generated Content Styling */
+/* Paragraph styling for content sections */
+.text-lg p, .text-gray-600 p, .content-section p {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+  color: #4b5563;
+  font-weight: 400;
+}
+
+.content-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* Heading styles for AI content */
+.content-section h2, .text-lg h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-top: 2rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 3px solid #3b82f6;
+  position: relative;
+}
+
+.content-section h2:first-child {
+  margin-top: 0;
+}
+
+.content-section h2::before {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+}
+
+.content-section h3, .text-lg h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #374151;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 4px solid #10b981;
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), transparent);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* List styling for AI content */
+.content-section ul, .text-lg ul {
+  margin: 1.5rem 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.content-section ul li, .text-lg ul li {
+  position: relative;
+  padding: 0.75rem 0 0.75rem 2rem;
+  margin-bottom: 0.5rem;
+  background: rgba(59, 130, 246, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+  transition: all 0.3s ease;
+}
+
+.content-section ul li:hover, .text-lg ul li:hover {
+  background: rgba(59, 130, 246, 0.1);
+  transform: translateX(4px);
+}
+
+.content-section ul li::before, .text-lg ul li::before {
+  content: "✓";
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  color: #10b981;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.content-section ol, .text-lg ol {
+  margin: 1.5rem 0;
+  padding-left: 2rem;
+  counter-reset: custom-counter;
+}
+
+.content-section ol li, .text-lg ol li {
+  counter-increment: custom-counter;
+  position: relative;
+  padding: 0.75rem 0 0.75rem 1.5rem;
+  margin-bottom: 0.75rem;
+  background: rgba(16, 185, 129, 0.05);
+  border-radius: 8px;
+  border-left: 4px solid #10b981;
+}
+
+.content-section ol li::before, .text-lg ol li::before {
+  content: counter(custom-counter);
+  position: absolute;
+  left: -2rem;
+  top: 0.75rem;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+  border-radius: 50%;
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.875rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Table styling for pricing and data */
+.content-section table, .text-lg table {
+  width: 100%;
+  margin: 2rem 0;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  background: white;
+}
+
+.content-section table thead, .text-lg table thead {
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: white;
+}
+
+.content-section table th, .text-lg table th {
+  padding: 1.25rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.content-section table td, .text-lg table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.content-section table tbody tr:nth-child(even), .text-lg table tbody tr:nth-child(even) {
+  background: rgba(59, 130, 246, 0.02);
+}
+
+.content-section table tbody tr:hover, .text-lg table tbody tr:hover {
+  background: rgba(59, 130, 246, 0.08);
+  transform: scale(1.005);
+  transition: all 0.3s ease;
+}
+
+.content-section table tbody tr:last-child td, .text-lg table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Special styling for pricing tables */
+.content-section table.pricing, .text-lg table.pricing {
+  margin: 2rem 0;
+}
+
+.content-section table.pricing th:first-child, .text-lg table.pricing th:first-child {
+  background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.content-section table.pricing td:first-child, .text-lg table.pricing td:first-child {
+  font-weight: 600;
+  color: #1f2937;
+  background: rgba(16, 185, 129, 0.05);
+}
+
+/* Responsive table design */
+@media (max-width: 768px) {
+  .content-section table, .text-lg table {
+    font-size: 0.875rem;
+  }
+  
+  .content-section table th, .text-lg table th,
+  .content-section table td, .text-lg table td {
+    padding: 0.75rem 0.5rem;
+  }
+  
+  /* Stack table on very small screens */
+  @media (max-width: 480px) {
+    .content-section table, .text-lg table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+  }
+}
+
+/* Performance optimizations */
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  loading: lazy;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .sticky-phone {
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .phone-button {
+    padding: 12px 24px !important;
+    font-size: 16px !important;
+  }
+  
+  h1 { font-size: 2rem !important; }
+  h2 { font-size: 1.75rem !important; }
+  h3 { font-size: 1.5rem !important; }
+  
+  /* Adjust content typography for mobile */
+  .content-section h2, .text-lg h2 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .content-section h3, .text-lg h3 {
+    font-size: 1.25rem;
+    margin-top: 1.25rem;
+  }
+  
+  .content-section p, .text-lg p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+  }
+  
+  .content-section ul li, .text-lg ul li,
+  .content-section ol li, .text-lg ol li {
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Accessibility improvements */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus states for better accessibility */
+a:focus, button:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
