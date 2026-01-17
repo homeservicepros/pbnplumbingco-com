@@ -15,13 +15,22 @@
         .floating-phone { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: none; }
         @media (max-width: 768px) { .floating-phone { display: flex !important; } }
     </style>
+<!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9YE9WNCF35"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-9YE9WNCF35');
+    </script>
 </head>
 <body class="bg-white">
     
     <div class="bg-gray-900 text-white py-2 text-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
         <div class="flex items-center space-x-6">
-          <span>📧 contact@pbmplumbingco.com</span>
+          <a href="mailto:contact@pbmplumbingco.com" class="text-white"><span>📧 contact@pbmplumbingco.com</span></a>
           <span>📍 Buffalo, NY</span>
         </div>
         <div class="hidden md:flex items-center space-x-4">
