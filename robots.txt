@@ -5,7 +5,6 @@ Allow: /
 Sitemap: https://pbmplumbingco.com/sitemap-index.xml
 Sitemap: https://pbmplumbingco.com/sitemap.xml
 
-
 # Block common bot traps
 Disallow: /cgi-bin/
 Disallow: /wp-admin/
