@@ -3,6 +3,7 @@ Allow: /
 
 # Performance optimization
 Sitemap: https://pbmplumbingco.com/sitemap.xml
+Sitemap: https://pbmplumbingco.com/sitemap-index.xml
 
 # Block common bot traps
 Disallow: /cgi-bin/
