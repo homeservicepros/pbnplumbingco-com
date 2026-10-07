@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import CallButton from './CallButton.astro';
+import AltPhone from './AltPhone.astro';
 import SectionHeading from './SectionHeading.astro';
 import MapEmbed from './MapEmbed.astro';
 import { SITE, telHref, buffaloMapSrc } from '../config/site';
@@ -35,7 +36,10 @@ const c = contact ?? { heading: f.contactHeading, businessName: f.businessName, 
           <ul class="mt-6 space-y-5">
             <li class="flex items-center gap-4">
               <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700"><Icon name="phone" size={22} /></span>
-              <a href={telHref} class="text-xl font-bold text-navy-900 hover:text-brand-600">{SITE.phone}</a>
+              <div>
+                <a href={telHref} class="text-xl font-bold text-navy-900 hover:text-brand-600">{SITE.phone}</a>
+                <AltPhone class="block" location="map-section" />
+              </div>
             </li>
             <li class="flex items-start gap-4">
               <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700"><Icon name="map-pin" size={22} /></span>

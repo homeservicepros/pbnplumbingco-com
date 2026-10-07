@@ -71,19 +71,29 @@ export function businessNode(opts: { areas: AreaRef[]; services: ServiceRef[]; w
       { '@type': 'City', name: 'Buffalo', containedInPlace: { '@type': 'State', name: 'New York' } },
       ...opts.areas.map(areaPlace),
     ],
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: SITE.phoneE164,
-      contactType: 'emergency plumbing service',
-      areaServed: 'US-NY',
-      availableLanguage: 'English',
-      hoursAvailable: {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(dayUrl),
-        opens: '00:00',
-        closes: '23:59',
+    contactPoint: [
+      {
+        '@type': 'ContactPoint',
+        telephone: SITE.phoneE164,
+        contactType: 'emergency plumbing service',
+        areaServed: 'US-NY',
+        availableLanguage: 'English',
+        hoursAvailable: {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'].map(dayUrl),
+          opens: '00:00',
+          closes: '23:59',
+        },
       },
-    },
+      // second live line (the number printed on the vans, signs and badges)
+      {
+        '@type': 'ContactPoint',
+        telephone: SITE.phoneAltE164,
+        contactType: 'customer service',
+        areaServed: 'US-NY',
+        availableLanguage: 'English',
+      },
+    ],
   };
   if (opts.withCatalog) {
     node.hasOfferCatalog = {

@@ -3,6 +3,7 @@ import Icon from './Icon.astro';
 import Brand from './Brand.astro';
 import Photo from './Photo.astro';
 import CallButton from './CallButton.astro';
+import AltPhone from './AltPhone.astro';
 import { SITE, mailHref, telHref } from '../config/site';
 import { statesAlphabetical, stateUrl } from '../config/states';
 import { serviceLinks, getAreaLinks, GROUP_LABEL, type ServiceGroup } from '../lib/content';
@@ -45,7 +46,10 @@ const link = 'text-white/70 transition hover:text-amber-400';
           </li>
           <li class="flex items-center gap-3">
             <Icon name="phone" size={20} class="shrink-0 text-amber-400" />
-            <a href={telHref} class="font-semibold text-white hover:text-amber-400">{SITE.phone}</a>
+            <span>
+              <a href={telHref} class="font-semibold text-white hover:text-amber-400">{SITE.phone}</a>
+              <AltPhone tone="dark" class="block" location="footer" />
+            </span>
           </li>
           <li class="flex items-center gap-3">
             <Icon name="mail" size={20} class="shrink-0 text-amber-400" />

@@ -1,0 +1,16 @@
+---
+import { SITE, telAltHref } from '../config/site';
+
+interface Props {
+  /** colour scheme of the surface it sits on */
+  tone?: 'light' | 'dark';
+  class?: string;
+  location?: string;
+}
+const { tone = 'light', class: className = '', location = 'alt-phone' } = Astro.props;
+---
+
+<span class:list={['text-sm', tone === 'dark' ? 'text-white/70' : 'text-muted', className]}>
+  Alternate line:
+  <a href={telAltHref} data-call-alt={location} class:list={['font-semibold underline-offset-4 hover:underline', tone === 'dark' ? 'text-white hover:text-amber-400' : 'text-navy-900 hover:text-brand-600']}>{SITE.phoneAlt}</a>
+</span>

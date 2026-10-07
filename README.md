@@ -64,15 +64,20 @@ logo variants (navy for light backgrounds, white for dark), cuts the trust badge
 favicons and `og-default.jpg`. The GBP-optimised (EXIF) JPG pack is for Google Business Profile uploads and is intentionally not used
 on the site. `Conversion Graphics/Overlay 2` (a mock "5-star verified customer" review card) is not used.
 
-### Phone number
+### Phone numbers (two live lines)
 
-The business number lives in `SITE.phone` / `SITE.phoneE164` (`src/config/site.ts`) and in the page copy (extracted JSON). It is currently
-**(716) 663-0186**. The media pack was generated with the previous number printed on it, so `scripts/phone_retouch.py` redraws the new
-number on the six images that carried it — `van-1`, `van-2`, `technician-unloading`, `business-exterior` and both trust badges (the
-social-share image is built from the retouched `van-1`). These are stop-gaps; regenerate or photograph those images with the right
-number and drop them in with `npm run photo`. (The two vans also show a mistyped e-mail, `…plumbingpres.com`, from the AI generation.)
-If you change the number again, update the config and the extractor's `REPLACEMENTS`, re-run `prepare_media.py`, and `npm run verify`
-will fail the build if the old number survives anywhere.
+| Role | Number | Where it is used |
+| --- | --- | --- |
+| **Primary** — `SITE.phone` / `phoneE164` | **(716) 663-0186** | every call-to-action button (header, hero, sidebars, FAQ, blog, mobile call bar, 404, footer button), top bar, the page copy, the main JSON-LD `telephone` |
+| **Alternate** — `SITE.phoneAlt` / `phoneAltE164` | (716) 610-1160 | a labeled "Alternate line:" link under the primary number in the footer (every page), the homepage Find-Us and Contact blocks, the service/area contact card, and the mobile menu; a second `ContactPoint` in JSON-LD; `llms.txt` |
+
+The alternate is the number printed on the vans, signs and trust badges in the media pack, so those images are used exactly as supplied.
+Both lines are tap-to-call (`tel:`); alternate-line links carry `data-call-alt` and primary buttons `data-call`, so the two can be tracked
+separately in analytics. To swap or add a number, edit `src/config/site.ts` only (and the `REPLACEMENTS` map in
+`scripts/extract_legacy_content.py`, which controls the number inside the page copy). `npm run verify` fails if any call button uses the
+alternate number, if the alternate shows anywhere except in a labeled alternate-line link, or if either number is missing from the JSON-LD.
+Note both Google Business Profile and the old-domain listings should use consistent NAP: pick one number as the GBP primary and add
+the other as an additional phone.
 
 ## Analytics (Google Analytics 4)
 
@@ -134,11 +139,11 @@ npm run verify -- /tmp/legacy dist        # python3 -I scripts/verify_parity.py 
 
 Checks: identical URL set (+ sitemap lists all 45) · identical `<title>` and meta description on every page · every text node of
 every legacy page's content present verbatim · every internal link/asset resolves · one `<h1>`, canonical on the new domain,
-valid JSON-LD, alt text and og:image on every page · no trace of the old domain or old phone number · every tel: link and JSON-LD telephone is the new number · all 52 state links on every page · every date inside the window above.
+valid JSON-LD, alt text and og:image on every page · no trace of the old domain · every call button uses the primary number and the alternate appears only as a labeled alternate line · both numbers in the JSON-LD · all 52 state links on every page · every date inside the window above.
 
 The only intentional differences from the legacy copy (applied by the extractor and mirrored in the verifier):
 `contact@pbmplumbingco.com` → `info@buffaloplumbingpros.com`, `pbmplumbingco.com` → `buffaloplumbingpros.com`, and the business ZIP
-`14086` → `14228` (new address: 140 Irwin Pl, Buffalo, NY 14228) in titles, descriptions and body copy, the new phone number, and the new publish dates described above.
+`14086` → `14228` (new address: 140 Irwin Pl, Buffalo, NY 14228) in titles, descriptions and body copy, the primary phone number (see below), and the new publish dates described above.
 
 ## SEO / AI-search foundations included
 

@@ -58,32 +58,9 @@ def open_rgb(rel: str) -> Image.Image:
     return Image.open(PACK / f"{rel}.webp").convert("RGB")
 
 
-# ----------------------------------------------------------------------------- phone-number retouching (optional step)
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import phone_retouch as pr  # noqa: E402
-
-stale: list[str] = []
-
-
-def retouched(name: str, im: Image.Image, recipes: dict) -> Image.Image:
-    fn = recipes.get(name)
-    if fn is None:
-        return im
-    try:
-        out = fn(im)
-        print("  retouched phone number on", name)
-        return out
-    except (ImportError, FileNotFoundError) as e:
-        stale.append(name)
-        print(f"  !! could not retouch {name}: {e}")
-        return im
-
-
 # ----------------------------------------------------------------------------- photos
-photos: dict[str, Image.Image] = {}
 for rel, name in PHOTO_MAP.items():
-    im = retouched(name, open_rgb(rel), pr.PHOTO_RECIPES)
-    photos[name] = im
+    im = open_rgb(rel)
     im.save(PHOTOS / f"{name}.webp", "WEBP", quality=82, method=6)
     print("photo", name, im.size)
 
@@ -166,7 +143,6 @@ def cut_out(im: Image.Image, thresh: int = 244) -> Image.Image:
 for rel, name in (("Conversion Graphics/Trust Badge 1", "badge-shield"), ("Conversion Graphics/Trust Badge 2", "badge-emergency")):
     b = cut_out(open_rgb(rel))
     b.thumbnail((640, 640), Image.LANCZOS)
-    b = retouched(name, b, pr.BADGE_RECIPES)
     b.save(BRAND / f"{name}.png", optimize=True)
     print("badge", name, b.size)
 
@@ -192,7 +168,7 @@ fav.save(PUBLIC / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
 # ----------------------------------------------------------------------------- OG image (1200x630)
 W, H = 1200, 630
 og = Image.new("RGB", (W, H), (9, 30, 66))
-photo = photos["van-1"].copy()  # the retouched hero van
+photo = open_rgb("Field Presence/Branded Van 1")
 scale = H / photo.height
 photo = photo.resize((int(photo.width * scale), H), Image.LANCZOS)
 PHOTO_X = 300
@@ -207,6 +183,4 @@ logo_w = whiten(full).copy()
 logo_w.thumbnail((340, 340), Image.LANCZOS)
 og.alpha_composite(logo_w, (64, (H - logo_w.height) // 2))
 og.convert("RGB").save(PUBLIC / "og-default.jpg", quality=86, optimize=True, progressive=True)
-if stale:
-    print("\n*** WARNING: these images still show the OLD phone number:", ", ".join(stale), "***")
 print("done")

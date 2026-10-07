@@ -19,6 +19,7 @@ export const GET: APIRoute = async () => {
     '',
     '## Business details',
     `- Phone: ${SITE.phone}`,
+    `- Alternate phone: ${SITE.phoneAlt}`,
     `- Email: ${SITE.email}`,
     `- Address: ${fullAddress}`,
     `- Hours: ${SITE.hours.join(' · ')}`,

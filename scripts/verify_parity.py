@@ -11,8 +11,9 @@ Checks (exit code 1 if any hard check fails):
   3. Copy parity     – every text node of legacy page *content* (chrome excluded) appears in the new page.
   4. Link integrity  – every internal href / src in the new build resolves to a built file.
   5. SEO hygiene     – one <h1>, canonical on the new domain, valid JSON-LD, images have alt.
-  6. Domain + phone  – no trace of the old domain or old phone number anywhere in dist; every tel: link and every JSON-LD
-                       telephone is the new number; every page links all state sub-domains.
+  6. Domain + phones – no trace of the old domain; every primary call button uses (716) 663-0186; the second live line
+                       (716) 610-1160 appears only as a labeled "Alternate line" link (and in JSON-LD / llms.txt); every page
+                       links all state sub-domains.
   7. Dates           – every publish/modified date, <time>, sitemap <lastmod> and visible date/year is within
                        EARLIEST..LATEST below (the site is treated as freshly published; nothing after "today").
 
@@ -258,8 +259,8 @@ for u, p in sorted(dist_pages.items()):
 print(f"[5] SEO hygiene on {len(dist_pages)} pages (1×h1, canonical, JSON-LD, alt, og:image) → {'OK' if not seo_bad else f'{seo_bad} issues'}")
 
 # ------------------------------------------------------------------ 6. domain move
-OLD_PHONE = re.compile(r"610[\s.\-)]*1160|7166101160")
-NEW_E164 = "+17166630186"
+PRIMARY_E164, ALT_E164 = "+17166630186", "+17166101160"
+ALT_TEXT = re.compile(r"610[\s.\-)]*1160|7166101160")
 leaks = []
 for f in DIST.rglob("*"):
     if f.is_file() and f.suffix in {".html", ".xml", ".txt", ".json", ".webmanifest", ".js", ".css"}:
@@ -267,20 +268,40 @@ for f in DIST.rglob("*"):
         if OLD_DOMAIN in text:
             leaks.append(f.relative_to(DIST).as_posix())
             fail(f"old domain {OLD_DOMAIN} still referenced in dist/{f.relative_to(DIST)}")
-        if OLD_PHONE.search(text):
-            leaks.append(f.relative_to(DIST).as_posix())
-            fail(f"old phone number still present in dist/{f.relative_to(DIST)}")
+        if f.suffix != ".html" and f.name != "llms.txt" and ALT_TEXT.search(text):
+            fail(f"alternate number unexpectedly present in dist/{f.relative_to(DIST)}")
+llms = (DIST / "llms.txt").read_text(encoding="utf8")
+if "(716) 663-0186" not in llms or "(716) 610-1160" not in llms:
+    fail("llms.txt must list both phone numbers")
 tel_bad = 0
 for u, p in sorted(dist_pages.items()):
     soup = load(p)
+    # every tel: link is one of the two live lines
     for a in soup.find_all("a", href=re.compile(r"^tel:")):
-        if a["href"] != f"tel:{NEW_E164}":
+        if a["href"] not in (f"tel:{PRIMARY_E164}", f"tel:{ALT_E164}"):
             tel_bad += 1
             fail(f"{u}: unexpected tel link {a['href']}")
-    ld = " ".join(b.string or "" for b in soup.find_all("script", type="application/ld+json"))
-    if NEW_E164 not in ld:
+    # every primary call-to-action (data-call) is the primary number, never the alternate
+    for a in soup.find_all("a", attrs={"data-call": True}):
+        if a["href"] != f"tel:{PRIMARY_E164}":
+            tel_bad += 1
+            fail(f"{u}: call button {a.get('data-call')} does not use the primary number")
+    # the alternate line is present (footer at least) and is only ever shown through a labeled alternate link
+    alt_links = soup.find_all("a", attrs={"data-call-alt": True})
+    if not alt_links or any(a["href"] != f"tel:{ALT_E164}" for a in alt_links):
         tel_bad += 1
-        fail(f"{u}: JSON-LD does not contain the new telephone")
+        fail(f"{u}: alternate line link missing or wrong")
+    body = visible_text(load(p))
+    shown = len(ALT_TEXT.findall(body))
+    in_links = sum(len(ALT_TEXT.findall(a.get_text(" "))) for a in alt_links)
+    if shown != in_links:
+        tel_bad += 1
+        fail(f"{u}: the alternate number appears {shown - in_links}× outside an 'Alternate line' link")
+    # structured data carries both lines
+    ld = " ".join(b.string or "" for b in soup.find_all("script", type="application/ld+json"))
+    if PRIMARY_E164 not in ld or ALT_E164 not in ld:
+        tel_bad += 1
+        fail(f"{u}: JSON-LD must contain both telephone numbers")
 state_pat = re.compile(r"^https://([a-z]{2})\.buffaloplumbingpros\.com/$")
 state_bad = 0
 for u, p in sorted(dist_pages.items()):
@@ -292,7 +313,7 @@ home = load(dist_pages["/"])
 tiles = [a for a in home.select("#states ul[aria-label='Map of states we serve'] a")]
 if len(tiles) != len(STATE_CODES):
     fail(f"homepage tile map has {len(tiles)} tiles, expected {len(STATE_CODES)}")
-print(f"[6] Domain + phone: old domain/phone found in {len(leaks)} dist files; tel/JSON-LD problems: {tel_bad}; all {len(STATE_CODES)} state links present on "
+print(f"[6] Domain + phones: old domain found in {len(leaks)} dist files; phone problems: {tel_bad}; all {len(STATE_CODES)} state links present on "
       f"{len(dist_pages) - state_bad}/{len(dist_pages)} pages; homepage map has {len(tiles)} tiles → "
       f"{'OK' if not leaks and not tel_bad and not state_bad and len(tiles) == len(STATE_CODES) else 'PROBLEMS'}")
 

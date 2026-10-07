@@ -14,9 +14,13 @@ export const SITE = {
   /** Production origin. Canonical URLs, sitemap, JSON-LD and the state sub-domain links are built from this. */
   url: 'https://buffaloplumbingpros.com',
   tagline: 'Expert Residential Plumbing Services Solutions',
+  /** PRIMARY number: used by every call-to-action button, the header, the mobile call bar and the main JSON-LD telephone. */
   phone: '(716) 663-0186',
   /** E.164 form for tel: links. */
   phoneE164: '+17166630186',
+  /** SECOND live line (the number on the vans, signs and badges). Shown as an "alternate line" in contact blocks and the footer. */
+  phoneAlt: '(716) 610-1160',
+  phoneAltE164: '+17166101160',
   email: 'info@buffaloplumbingpros.com',
   address: {
     street: '140 Irwin Pl',
@@ -40,6 +44,7 @@ export const SITE = {
 } as const;
 
 export const telHref = `tel:${SITE.phoneE164}`;
+export const telAltHref = `tel:${SITE.phoneAltE164}`;
 export const mailHref = `mailto:${SITE.email}`;
 export const absoluteUrl = (path = '/') => new URL(path, SITE.url).toString();
 

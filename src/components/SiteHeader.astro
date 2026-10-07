@@ -2,7 +2,7 @@
 import Icon from './Icon.astro';
 import Brand from './Brand.astro';
 import CallButton from './CallButton.astro';
-import { SITE } from '../config/site';
+import { SITE, telAltHref } from '../config/site';
 import { serviceLinks, getAreaLinks, GROUP_LABEL, type ServiceGroup } from '../lib/content';
 import { serviceIcon } from '../lib/icons';
 
@@ -172,6 +172,10 @@ const navLink = 'rounded-lg px-3.5 py-2 font-semibold text-navy-900 transition h
       <a href="/#contact" class="block rounded-lg px-3 py-3 text-lg font-semibold text-navy-900">Contact</a>
       <div class="pt-3">
         <CallButton size="lg" class="w-full" location="mobile-menu" />
+        <a href={telAltHref} class="btn btn-outline mt-3 w-full text-base" data-call-alt="mobile-menu">
+          <Icon name="phone" size={18} />
+          <span>Alternate line: {SITE.phoneAlt}</span>
+        </a>
       </div>
     </div>
   </div>
