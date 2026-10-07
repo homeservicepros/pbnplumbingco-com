@@ -1,0 +1,89 @@
+{
+  "name": "University Heights",
+  "zip": "14214",
+  "title": "Residential Plumbing Services in University Heights near me 14214 - Drain Cleaning, Water Heater Repair, Leak Detection, Emergency Plumbing",
+  "description": "Expert residential plumbing services in University Heights 14214. Local plumbers near me available 24/7 for emergencies. Call Buffalo Plumbing PROS (716) 610-1160",
+  "h1": "Professional Residential Plumbing Services in University Heights, Buffalo NY",
+  "heroText": "Expert residential plumbing services in University Heights 14214. Local plumbers near me available 24/7 for emergencies. Call Buffalo Plumbing PROS (716) 610-1160",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS delivers comprehensive residential plumbing solutions to homeowners throughout University Heights 14214. Our experienced team understands the unique plumbing challenges faced by the historic homes and student housing properties in this vibrant Buffalo neighborhood.</p><h2>Expert Residential Plumbing Solutions in University Heights</h2><ul><li>24/7 Emergency Plumbing Response</li><li>Water Heater Installation &amp; Repair</li><li>Drain Cleaning &amp; Sewer Services</li><li>Pipe Repair &amp; Replacement</li></ul><h2>Residential Plumbing Pricing for University Heights</h2><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Drain Cleaning</td><td>$99</td></tr><tr><td>Water Heater Repair</td><td>$149</td></tr><tr><td>Emergency Service</td><td>$159</td></tr></table><p>As University Heights' trusted plumbing partner, we specialize in addressing both routine maintenance and emergency plumbing issues for the diverse mix of single-family homes, apartments, and student housing near UB South Campus. Our technicians are familiar with the area's aging infrastructure and common plumbing challenges specific to the 14214 zip code.</p>",
+  "whyHeading": "Why Choose Us in University Heights?",
+  "whyItems": [
+    {
+      "title": "Dedicated University Heights team familiar with local building codes and regulations",
+      "text": "Trusted by University Heights residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Fast response times - average 30 minutes to UB South Campus area",
+      "text": "Trusted by University Heights residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Special discounts for University Heights residents and students",
+      "text": "Trusted by University Heights residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Experience with both modern and historic home plumbing systems in 14214",
+      "text": "Trusted by University Heights residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in University Heights",
+    "text": "Buffalo Plumbing PROS serves all of University Heights and surrounding areas including Bailey-Delavan, Kensington-Bailey, Eggertsville, and North Buffalo. We regularly service properties near UB South Campus, Main Street, Bailey Avenue, and throughout the 14214 zip code area."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving University Heights with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "University Heights Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14214"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in University Heights",
+  "mapSubheading": "Local Residential Plumbing Services services in University Heights and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving University Heights, Buffalo",
+    "zipLine": "Zip Code: 14214",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "elmwood-village-14222",
+        "name": "Elmwood Village"
+      },
+      {
+        "slug": "north-buffalo-14216",
+        "name": "North Buffalo"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}

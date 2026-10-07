@@ -1,0 +1,40 @@
+---
+/**
+ * Responsive, build-time-optimised photo from /src/assets/photos (AVIF + WebP + srcset).
+ * Alt text defaults to the accurate description kept in lib/media.ts.
+ */
+import { Picture } from 'astro:assets';
+import { photo, PHOTO_ALT, type PhotoName } from '../lib/media';
+
+interface Props {
+  name: PhotoName;
+  /** Override the default alt (pass "" for purely decorative use). */
+  alt?: string;
+  sizes: string;
+  widths?: number[];
+  /** Above-the-fold / LCP image: eager + high fetch priority. */
+  priority?: boolean;
+  class?: string;
+  pictureClass?: string;
+  /** CSS object-position, e.g. "50% 30%". */
+  position?: string;
+}
+
+const { name, alt, sizes, widths = [480, 768, 1024, 1376], priority = false, class: className, pictureClass, position } = Astro.props;
+const src = photo(name);
+const usable = widths.filter((w) => w <= src.width);
+if (!usable.length || usable[usable.length - 1]! < src.width) usable.push(src.width);
+---
+
+<Picture
+  src={src}
+  alt={alt ?? PHOTO_ALT[name]}
+  widths={usable}
+  sizes={sizes}
+  formats={['avif', 'webp']}
+  fallbackFormat="webp"
+  priority={priority}
+  class={className}
+  pictureAttributes={pictureClass ? { class: pictureClass } : undefined}
+  style={position ? `object-position:${position}` : undefined}
+/>

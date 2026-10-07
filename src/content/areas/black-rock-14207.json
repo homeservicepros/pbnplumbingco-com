@@ -1,0 +1,89 @@
+{
+  "name": "Black Rock",
+  "zip": "14207",
+  "title": "Residential Plumbing Services in Black Rock near me 14207 - Leak Repair, Water Heater Installation, Drain Cleaning, Emergency Plumbing",
+  "description": "Expert residential plumbing services in Black Rock, Buffalo NY 14207. 24/7 emergency plumbing, drain cleaning & repairs near me. Call (716) 610-1160 for same-day service!",
+  "h1": "Professional Residential Plumbing Services in Black Rock, Buffalo NY",
+  "heroText": "Expert residential plumbing services in Black Rock, Buffalo NY 14207. 24/7 emergency plumbing, drain cleaning & repairs near me. Call (716) 610-1160 for same-day service!",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS delivers comprehensive residential plumbing solutions throughout Black Rock's historic 14207 neighborhood. Our expert team understands the unique plumbing challenges faced by the area's classic homes and newer developments along Niagara Street and Hamilton Street.</p><p>From emergency leak repairs to complete bathroom remodels, we provide fast, reliable service to Black Rock residents. Our licensed plumbers are familiar with both the century-old infrastructure common in the neighborhood and modern plumbing systems.</p><h3>Our Popular Black Rock Plumbing Services</h3><ul><li>24/7 Emergency Plumbing Repairs</li><li>Water Heater Installation &amp; Repair</li><li>Drain Cleaning &amp; Camera Inspection</li><li>Pipe Repair &amp; Replacement</li><li>Bathroom &amp; Kitchen Plumbing</li></ul><h3>Residential Plumbing Pricing in Black Rock</h3><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Drain Cleaning</td><td>$99</td></tr><tr><td>Water Heater Installation</td><td>$899</td></tr><tr><td>Emergency Service Call</td><td>$129</td></tr></table>",
+  "whyHeading": "Why Choose Us in Black Rock?",
+  "whyItems": [
+    {
+      "title": "Local Black Rock plumbers familiar with the neighborhood's historic housing infrastructure",
+      "text": "Trusted by Black Rock residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Fast 30-minute response time to emergencies anywhere in 14207",
+      "text": "Trusted by Black Rock residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Specialized equipment for dealing with older plumbing systems common in Black Rock homes",
+      "text": "Trusted by Black Rock residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Proud supporters of the Black Rock-Riverside Alliance and local community events",
+      "text": "Trusted by Black Rock residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in Black Rock",
+    "text": "We provide residential plumbing services throughout Black Rock and surrounding areas including Riverside, Grant-Amherst, West Hertel, Riverside Park, and Downtown Buffalo. Our service area covers all of ZIP code 14207 and neighboring communities along Niagara Street and Military Road corridors."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving Black Rock with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "Black Rock Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14207"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in Black Rock",
+  "mapSubheading": "Local Residential Plumbing Services services in Black Rock and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving Black Rock, Buffalo",
+    "zipLine": "Zip Code: 14207",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "elmwood-village-14222",
+        "name": "Elmwood Village"
+      },
+      {
+        "slug": "north-buffalo-14216",
+        "name": "North Buffalo"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}

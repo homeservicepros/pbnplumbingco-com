@@ -1,0 +1,89 @@
+{
+  "name": "Broadway Fillmore",
+  "zip": "14212",
+  "title": "Residential Plumbing Services in Broadway Fillmore, Buffalo NY 14212 - Emergency Repairs, Water Heaters, Drain Cleaning, Leak Detection",
+  "description": "Expert residential plumbing services in Broadway Fillmore 14212. 24/7 local plumbers near you. Free estimates & same-day service available. Call (716) 610-1160",
+  "h1": "Professional Residential Plumbing Services in Broadway Fillmore, Buffalo NY",
+  "heroText": "Expert residential plumbing services in Broadway Fillmore 14212. 24/7 local plumbers near you. Free estimates & same-day service available. Call (716) 610-1160",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS delivers comprehensive residential plumbing solutions throughout the historic Broadway Fillmore neighborhood. Our local team specializes in both emergency repairs and scheduled maintenance for the diverse housing stock in the 14212 area, from classic Polish-American homes to newer developments.</p><h2>Expert Plumbing Services in Broadway Fillmore</h2><p>We understand the unique plumbing challenges faced by Broadway Fillmore residents, particularly in older homes near the Central Terminal and Broadway Market. Our services include:</p><ul><li>24/7 Emergency Plumbing Repairs</li><li>Water Heater Installation &amp; Repair</li><li>Drain Cleaning &amp; Camera Inspection</li><li>Pipe Repair &amp; Replacement</li><li>Fixture Installation &amp; Updates</li></ul><h3>Residential Plumbing Pricing in 14212</h3><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Drain Cleaning</td><td>$89</td></tr><tr><td>Water Heater Installation</td><td>$899</td></tr><tr><td>Emergency Service Call</td><td>$129</td></tr></table>",
+  "whyHeading": "Why Choose Us in Broadway Fillmore?",
+  "whyItems": [
+    {
+      "title": "Deep knowledge of Broadway Fillmore's historic plumbing systems and common issues",
+      "text": "Trusted by Broadway Fillmore residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Dedicated emergency response team based near Central Terminal for rapid service",
+      "text": "Trusted by Broadway Fillmore residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Specialized experience working with pre-1940s home plumbing common in the neighborhood",
+      "text": "Trusted by Broadway Fillmore residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Strong relationships with local suppliers for authentic replacement parts",
+      "text": "Trusted by Broadway Fillmore residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in Broadway Fillmore",
+    "text": "We proudly serve all of Broadway Fillmore (14212) and surrounding areas including Kaisertown, Lovejoy, Polonia, Schiller Park, and MLK Park neighborhoods. Our central location allows for quick response times throughout East Buffalo, including Clinton-Bailey and the Broadway Market district."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving Broadway Fillmore with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "Broadway Fillmore Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14212"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in Broadway Fillmore",
+  "mapSubheading": "Local Residential Plumbing Services services in Broadway Fillmore and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving Broadway Fillmore, Buffalo",
+    "zipLine": "Zip Code: 14212",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "elmwood-village-14222",
+        "name": "Elmwood Village"
+      },
+      {
+        "slug": "north-buffalo-14216",
+        "name": "North Buffalo"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}

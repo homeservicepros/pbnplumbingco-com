@@ -1,0 +1,89 @@
+{
+  "name": "Parkside",
+  "zip": "14214",
+  "title": "Residential Plumbing Services in Parkside near me 14214 - Drain Cleaning, Water Heater Repair, Leak Detection, Emergency Plumbing",
+  "description": "Expert residential plumbing services in Parkside Buffalo 14214. 24/7 emergency plumbing, drain cleaning & repairs. Local plumbers near you! Call (716) 610-1160",
+  "h1": "Professional Residential Plumbing Services in Parkside, Buffalo 14214",
+  "heroText": "Expert residential plumbing services in Parkside Buffalo 14214. 24/7 emergency plumbing, drain cleaning & repairs. Local plumbers near you! Call (716) 610-1160",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS delivers comprehensive residential plumbing solutions throughout Parkside's historic 14214 neighborhood. Our local team specializes in maintaining and repairing the unique plumbing systems found in Parkside's classic Tudor and Victorian homes, particularly along Parkside Avenue and surrounding streets.</p><p>We understand the specific challenges of Parkside's aging infrastructure, offering specialized services for century-old pipes, vintage fixtures, and modern upgrades. Our expertise includes:</p><ul><li>24/7 Emergency Plumbing Response</li><li>Vintage Home Plumbing Specialists</li><li>Water Line Repair &amp; Replacement</li><li>Sewer Line Services</li><li>Water Heater Installation</li></ul><p>Service Pricing Guide:<br/></p><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Drain Cleaning</td><td>$89</td></tr><tr><td>Water Heater Repair</td><td>$149</td></tr><tr><td>Emergency Service</td><td>$199</td></tr></table>",
+  "whyHeading": "Why Choose Us in Parkside?",
+  "whyItems": [
+    {
+      "title": "Deep knowledge of Parkside's historic home plumbing systems dating back to the early 1900s",
+      "text": "Trusted by Parkside residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Dedicated local team based minutes from Parkside, ensuring rapid response times",
+      "text": "Trusted by Parkside residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Specialized equipment for working with older plumbing infrastructure common in 14214",
+      "text": "Trusted by Parkside residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Relationships with Parkside Community Association for historic home preservation",
+      "text": "Trusted by Parkside residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in Parkside",
+    "text": "We proudly serve all of Parkside 14214 and surrounding areas including North Buffalo, Central Park, University Heights, Hertel Avenue district, and Delaware Park. Our service area extends to nearby neighborhoods like University District and Fillmore-Leroy, ensuring comprehensive coverage for all Parkside residents."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving Parkside with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "Parkside Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14214"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in Parkside",
+  "mapSubheading": "Local Residential Plumbing Services services in Parkside and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving Parkside, Buffalo",
+    "zipLine": "Zip Code: 14214",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "elmwood-village-14222",
+        "name": "Elmwood Village"
+      },
+      {
+        "slug": "north-buffalo-14216",
+        "name": "North Buffalo"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}

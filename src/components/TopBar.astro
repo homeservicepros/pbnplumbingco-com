@@ -1,0 +1,35 @@
+---
+import Icon from './Icon.astro';
+import { SITE, mailHref, telHref } from '../config/site';
+---
+
+<aside aria-label="Contact information" class="hidden bg-navy-950 text-[0.95rem] text-white/85 md:block">
+  <div class="container-x flex h-10 items-center justify-between gap-6">
+    <ul class="flex items-center gap-x-6">
+      <li>
+        <a href={mailHref} class="flex items-center gap-2 transition hover:text-amber-400">
+          <Icon name="mail" size={16} class="text-amber-400" />
+          <span>{SITE.email}</span>
+        </a>
+      </li>
+      <li class="flex items-center gap-2">
+        <Icon name="map-pin" size={16} class="text-amber-400" />
+        <span>Buffalo, NY</span>
+      </li>
+      <li class="hidden items-center gap-2 lg:flex">
+        <Icon name="badge-check" size={16} class="text-amber-400" />
+        <span>Licensed &amp; Insured</span>
+      </li>
+    </ul>
+    <p class="flex items-center gap-4">
+      <span class="flex items-center gap-2">
+        <span class="relative flex h-2.5 w-2.5">
+          <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-60"></span>
+          <span class="relative inline-flex h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+        </span>
+        24/7 Emergency Service
+      </span>
+      <a href={telHref} class="font-semibold text-white transition hover:text-amber-400">{SITE.phone}</a>
+    </p>
+  </div>
+</aside>

@@ -1,0 +1,161 @@
+---
+import Base from '../../layouts/Base.astro';
+import InnerHero from '../../components/InnerHero.astro';
+import Prose from '../../components/Prose.astro';
+import FaqList from '../../components/FaqList.astro';
+import Process from '../../components/Process.astro';
+import MapSection from '../../components/MapSection.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CallButton from '../../components/CallButton.astro';
+import Brand from '../../components/Brand.astro';
+import Icon from '../../components/Icon.astro';
+import { absoluteUrl } from '../../config/site';
+import { getServices, getAreaLinks, serviceLinks, serviceGroup, stripLocation, GROUP_LABEL } from '../../lib/content';
+import { SERVICE_PHOTO } from '../../lib/media';
+import { graph, businessNode, websiteNode, webPageNode, breadcrumbNode, serviceNode, faqNode } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const services = await getServices();
+  return services.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const slug = entry.id;
+const path = `/services/${slug}`;
+const url = absoluteUrl(path);
+const heroPhoto = SERVICE_PHOTO[slug] ?? 'residential-1';
+
+const areas = await getAreaLinks();
+const group = serviceGroup(d.name);
+const others = serviceLinks.filter((s) => s.slug !== slug);
+const related = [...others.filter((s) => s.group === group), ...others.filter((s) => s.group !== group)].slice(0, 6);
+
+const crumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Services', href: '/#services' },
+  { name: d.name },
+];
+
+const jsonLd = [
+  graph([
+    businessNode({ areas, services: serviceLinks }),
+    websiteNode(),
+    webPageNode({ url, name: d.title, description: d.description, about: `${url}#service` }),
+    breadcrumbNode(url, [
+      { name: 'Home', path: '/' },
+      { name: d.name, path },
+    ]),
+    serviceNode({ url, name: d.name, serviceType: stripLocation(d.name), description: d.description }),
+    faqNode(url, d.faqs),
+  ]),
+];
+---
+
+<Base title={d.title} description={d.description} path={path} ogPhoto={heroPhoto} jsonLd={jsonLd}>
+  <InnerHero
+    crumbs={crumbs}
+    h1={d.h1}
+    text={d.heroText}
+    buttonLabel={d.heroButton}
+    photo={heroPhoto}
+    secondary={{ href: '#faq', label: d.faqHeading }}
+    chips={[
+      { icon: 'clock', label: '24/7 Emergency Service' },
+      { icon: 'badge-check', label: 'Licensed & Insured' },
+      { icon: 'zap', label: 'Same-Day Service Available' },
+    ]}
+  />
+
+  <section class="section bg-white">
+    <div class="container-x grid gap-12 lg:grid-cols-12 lg:gap-14">
+      <article class="lg:col-span-8">
+        <Prose html={d.bodyHtml} />
+
+        <div class="mt-16">
+          <h2 class="text-3xl md:text-4xl">{d.benefitsHeading}</h2>
+          <ul class="mt-7 grid gap-4 sm:grid-cols-2">
+            {
+              d.benefits.map((b) => (
+                <li class="flex items-start gap-4 rounded-2xl border border-line bg-mist p-5">
+                  <span class="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand-600 text-white">
+                    <Icon name="check" size={18} />
+                  </span>
+                  <span class="text-lg font-semibold leading-snug text-navy-900">{b}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="mt-16">
+          <h2 class="text-3xl md:text-4xl">{d.processHeading}</h2>
+          <div class="mt-8">
+            <Process steps={d.process} />
+          </div>
+        </div>
+      </article>
+
+      <aside class="lg:col-span-4" aria-label="Contact">
+        <div class="lg:sticky lg:top-28">
+          <div class="relative overflow-hidden rounded-3xl bg-navy-900 p-7 text-white shadow-lift">
+            <div class="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-brand-600/30 blur-2xl" aria-hidden="true"></div>
+            <Brand name="badge-shield" alt="" width={88} class="relative h-auto w-[5.5rem] drop-shadow-xl" />
+            <h2 class="relative mt-5 text-3xl !text-white">{d.sidebarCta.heading}</h2>
+            <p class="relative mt-3 text-white/85">{d.sidebarCta.text}</p>
+            <CallButton label={d.sidebarCta.button} class="relative mt-6 w-full" size="lg" location="service-sidebar" />
+            <p class="relative mt-4 flex items-center gap-2 text-sm text-white/70">
+              <Icon name="clock" size={16} class="text-amber-400" /> 24/7 Emergency Service
+            </p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section id="faq" class="section bg-mist" aria-labelledby="faq-heading">
+    <div class="container-x max-w-4xl">
+      <SectionHeading kicker="FAQ" title={d.faqHeading} align="center" />
+      <div class="mt-10">
+        <FaqList faqs={d.faqs} />
+      </div>
+      <div class="mt-12 text-center">
+        <p class="text-lg text-muted">{d.faqFooter.text}</p>
+        <CallButton label={d.faqFooter.button} size="lg" class="mt-5" location="service-faq" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white" aria-labelledby="related-heading">
+    <div class="container-x">
+      <SectionHeading kicker={GROUP_LABEL[group]} title="Related services" />
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {related.map((s) => <ServiceCard slug={s.slug} name={s.name} href={s.href} compact />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-mist pt-0 lg:pt-0" aria-labelledby="areas-heading">
+    <div class="container-x">
+      <div class="rounded-3xl border border-line bg-white p-7 shadow-card sm:p-10">
+        <h2 id="areas-heading" class="text-3xl md:text-4xl">Service Areas</h2>
+        <p class="mt-3 text-lg text-muted">We proudly serve Buffalo and surrounding areas:</p>
+        <ul class="mt-6 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+          {
+            areas.map((a) => (
+              <li>
+                <a href={a.href} class="flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3 font-semibold text-navy-900 transition hover:border-brand-500 hover:bg-brand-50 hover:text-brand-700">
+                  <span class="flex items-center gap-2.5"><Icon name="map-pin" size={18} class="text-amber-600" />{a.name}</span>
+                  <span class="text-sm font-medium text-muted">{a.zip}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <MapSection heading={d.areasHeading} subheading={d.areasSubheading} />
+</Base>

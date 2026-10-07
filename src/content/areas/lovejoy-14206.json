@@ -1,0 +1,89 @@
+{
+  "name": "Lovejoy",
+  "zip": "14206",
+  "title": "Residential Plumbing Services in Lovejoy near me 14206 - Leak Repair, Water Heaters, Drain Cleaning, Emergency Plumbing",
+  "description": "Expert residential plumbing services in Lovejoy Buffalo 14206. 24/7 emergency repairs, drain cleaning & installations. Local plumbers near me. Call (716) 610-1160",
+  "h1": "Professional Residential Plumbing Services in Lovejoy, Buffalo 14206",
+  "heroText": "Expert residential plumbing services in Lovejoy Buffalo 14206. 24/7 emergency repairs, drain cleaning & installations. Local plumbers near me. Call (716) 610-1160",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS delivers comprehensive residential plumbing solutions throughout Lovejoy and the 14206 area. Our experienced team understands the unique plumbing challenges faced by homeowners in this historic East Buffalo neighborhood, from aging pipe systems in classic craftsman homes to modern plumbing installations in newer developments.</p><h2>Expert Plumbing Services in Lovejoy District</h2><ul><li>24/7 Emergency Plumbing Repairs</li><li>Water Heater Installation &amp; Maintenance</li><li>Drain Cleaning &amp; Camera Inspection</li><li>Pipe Repair &amp; Replacement</li><li>Fixture Installation &amp; Upgrades</li></ul><h2>Residential Plumbing Pricing in 14206</h2><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Drain Cleaning</td><td>$89</td></tr><tr><td>Water Heater Installation</td><td>$999</td></tr><tr><td>Emergency Service Call</td><td>$129</td></tr></table><p>As your local Lovejoy plumbing experts, we specialize in both routine maintenance and emergency services, ensuring your home's plumbing systems operate efficiently year-round. Our technicians are familiar with the specific requirements of homes in the 14206 area, including properties near William Street and Bailey Avenue.</p>",
+  "whyHeading": "Why Choose Us in Lovejoy?",
+  "whyItems": [
+    {
+      "title": "Dedicated emergency response team based in Lovejoy for faster service",
+      "text": "Trusted by Lovejoy residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Deep understanding of local building codes and historic home plumbing systems in 14206",
+      "text": "Trusted by Lovejoy residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Special discounts for Lovejoy neighborhood residents",
+      "text": "Trusted by Lovejoy residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Extensive experience with both old and new plumbing systems common in East Buffalo homes",
+      "text": "Trusted by Lovejoy residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in Lovejoy",
+    "text": "We proudly serve the entire Lovejoy district and surrounding areas including Broadway-Fillmore, Clinton-Bailey, Kaisertown, and South Buffalo. Our service area extends throughout the 14206 zip code and neighboring communities within East Buffalo, ensuring prompt response times for all residential plumbing needs."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving Lovejoy with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "Lovejoy Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14206"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in Lovejoy",
+  "mapSubheading": "Local Residential Plumbing Services services in Lovejoy and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving Lovejoy, Buffalo",
+    "zipLine": "Zip Code: 14206",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "elmwood-village-14222",
+        "name": "Elmwood Village"
+      },
+      {
+        "slug": "north-buffalo-14216",
+        "name": "North Buffalo"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}

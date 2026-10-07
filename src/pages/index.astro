@@ -1,0 +1,387 @@
+---
+import Base from '../layouts/Base.astro';
+import Photo from '../components/Photo.astro';
+import Brand from '../components/Brand.astro';
+import Icon from '../components/Icon.astro';
+import CallButton from '../components/CallButton.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import Prose from '../components/Prose.astro';
+import { SITE, telHref } from '../config/site';
+import { home, serviceLinks, getAreaLinks, GROUP_LABEL, serviceHref, type ServiceGroup } from '../lib/content';
+import { SERVICE_PHOTO, type PhotoName } from '../lib/media';
+import { graph, businessNode, websiteNode, homePageNode } from '../lib/schema';
+
+const areas = await getAreaLinks();
+const h = home;
+const groups: ServiceGroup[] = ['repair', 'installation'];
+const cardText = new Map(h.services.cards.map((c) => [c.slug, c.text]));
+
+// Hero headline: "<claim> - Available 24/7" → second half highlighted. The hyphen stays in the DOM text.
+const [headA, ...headRest] = h.hero.h1.split(' - ');
+const headB = headRest.join(' - ');
+
+const natIcons = ['shield-check', 'clock', 'award'];
+
+const gallery: { photo: PhotoName }[] = [
+  { photo: 'before-after-1' },
+  { photo: 'before-after-2' },
+  { photo: 'before-after-3' },
+  { photo: 'before-after-4' },
+];
+
+const jsonLd = [
+  graph([
+    businessNode({ areas, services: serviceLinks, withCatalog: true }),
+    websiteNode(),
+    homePageNode({ name: h.title, description: h.description }),
+  ]),
+];
+---
+
+<Base title={h.title} description={h.description} path="/" ogImage="/og-default.jpg" jsonLd={jsonLd} showRating>
+  <!-- ============================== HERO ============================== -->
+  <section id="home" class="relative isolate overflow-hidden bg-navy-950 text-white">
+    <Photo name="bg-header" alt="" sizes="100vw" widths={[768, 1376]} class="absolute inset-0 -z-20 h-full w-full object-cover opacity-55" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950 via-navy-950/90 to-navy-900/50"></div>
+    <div class="absolute inset-0 -z-10 bg-grid-lines opacity-60 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]"></div>
+
+    <div class="container-x grid items-center gap-12 pb-28 pt-12 lg:grid-cols-12 lg:gap-10 lg:pb-36 lg:pt-20">
+      <div class="lg:col-span-7">
+        <p class="hero-fade-in pill bg-amber-500/15 text-amber-400 ring-1 ring-amber-400/40">
+          <Icon name="zap" size={16} />
+          {h.hero.badge}
+        </p>
+        <h1 class="hero-fade-in d1 h-display mt-6 max-w-3xl !text-white">
+          {headA}{headB && <span class="sr-only"> - </span>}
+          {headB && <span class="mt-2 block text-amber-400">{headB}</span>}
+        </h1>
+        <p class="hero-fade-in d2 mt-6 max-w-2xl text-lg text-white/85 md:text-xl">{h.hero.text}</p>
+
+        <div class="hero-fade-in d3 mt-9 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
+          <a href={telHref} class="btn btn-amber max-w-xl px-6 py-4 text-left text-base leading-snug sm:text-lg" data-call="home-hero">
+            <Icon name="phone-call" size={28} class="shrink-0" />
+            <span>{h.hero.button}</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="relative lg:col-span-5">
+        <div class="hero-fade-in d2 relative">
+          <div class="absolute -inset-3 -z-10 rotate-2 rounded-[2rem] bg-gradient-to-br from-amber-500/60 to-brand-600/60 blur-sm" aria-hidden="true"></div>
+          <div class="overflow-hidden rounded-[1.75rem] shadow-2xl ring-1 ring-white/20">
+            <Photo name="van-1" sizes="(min-width: 1024px) 40vw, 100vw" widths={[480, 768, 1024]} priority class="aspect-[4/3] w-full object-cover" position="28% 50%" />
+          </div>
+          <Brand name="badge-emergency" alt="24/7 emergency plumbing service badge with phone number" width={136} class="absolute -bottom-9 -left-4 h-auto w-28 drop-shadow-2xl sm:-left-9 sm:w-36" />
+          <div class="absolute -right-2 -top-5 flex items-center gap-3 rounded-2xl bg-white p-3 pr-5 text-navy-900 shadow-lift sm:-right-6">
+            <Brand name="logo-mark" alt="" width={40} class="h-10 w-auto" />
+            <span class="leading-tight">
+              <span class="block font-display text-xl font-bold">Licensed &amp; Insured</span>
+              <span class="block text-sm text-muted">Buffalo, NY</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== STATS ============================== -->
+  <div class="container-x relative z-10 -mt-14 lg:-mt-20">
+    <dl class="grid grid-cols-2 divide-line overflow-hidden rounded-3xl border border-line bg-white shadow-lift md:grid-cols-4 md:divide-x">
+      {
+        h.hero.stats.map((s, i) => (
+          <div class:list={['px-6 py-7 text-center', i < 2 && 'border-b border-line md:border-b-0', i % 2 === 0 && 'border-r border-line md:border-r-0']}>
+            <dt class="order-2 mt-1 font-semibold text-muted">{s.label}</dt>
+            <dd class="font-display text-5xl font-bold leading-none text-navy-900 md:text-6xl">
+              {s.value}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+
+  <!-- ============================== FEATURED SERVICES ============================== -->
+  <section class="section bg-white pb-8 lg:pb-12" aria-label="Featured services">
+    <div class="container-x grid gap-6 md:grid-cols-3">
+      {
+        h.hero.cards.map((c, i) => (
+          <a href={serviceHref(c.slug)} class="card card-hover group relative flex flex-col overflow-hidden">
+            <span class="absolute left-4 top-4 z-10 grid h-12 w-12 place-items-center rounded-full bg-amber-500 font-display text-2xl font-bold text-navy-950 shadow-lg">{i + 1}</span>
+            <Photo name={SERVICE_PHOTO[c.slug] ?? 'residential-1'} alt="" sizes="(min-width: 768px) 33vw, 100vw" widths={[480, 768, 1024]} class="aspect-[16/10] w-full object-cover transition duration-500 group-hover:scale-105" pictureClass="block overflow-hidden" />
+            <span class="flex flex-1 flex-col p-7">
+              <span class="font-display text-3xl font-bold leading-tight text-navy-900">{c.title}</span>
+              <span class="mt-3 block text-muted">{c.text}</span>
+              <span class="mt-auto flex items-center gap-1.5 pt-5 font-semibold text-brand-600">
+                Learn More <Icon name="arrow-right" size={18} class="transition group-hover:translate-x-1" />
+              </span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ============================== ABOUT ============================== -->
+  <section id="about" class="section overflow-hidden bg-white">
+    <div class="container-x grid items-start gap-14 lg:grid-cols-2 lg:gap-20">
+      <div class="relative order-2 lg:sticky lg:top-28 lg:order-1">
+        <div class="relative">
+          <div class="absolute -left-4 -top-4 h-full w-full rounded-[2rem] border-2 border-amber-500" aria-hidden="true"></div>
+          <div class="relative overflow-hidden rounded-[2rem] shadow-lift">
+            <Photo name="owner-portrait" alt={h.about.imageAlt} sizes="(min-width: 1024px) 45vw, 100vw" widths={[480, 768, 1024]} class="aspect-[4/3] w-full object-cover" />
+            <div class="absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent"></div>
+            <div class="absolute bottom-6 left-6 right-6 text-white sm:right-60">
+              <p class="flex items-center gap-2 font-display text-2xl font-bold"><Icon name="award" size={24} class="text-amber-400" />{h.about.badge}</p>
+              <p class="text-white/85">{h.about.badgeSub}</p>
+            </div>
+          </div>
+          <div class="absolute -bottom-10 -right-3 hidden w-52 overflow-hidden rounded-2xl border-4 border-white shadow-lift sm:block lg:-right-10">
+            <Photo name="workspace-interior" sizes="208px" widths={[208, 416]} class="aspect-[4/3] w-full object-cover" />
+          </div>
+        </div>
+      </div>
+
+      <div class="order-1 lg:order-2">
+        <SectionHeading kicker="About us" title={h.about.heading} />
+        <Prose html={h.about.bodyHtml} wide class="mt-7" />
+        <div class="mt-9 grid grid-cols-2 gap-4">
+          {
+            h.about.stats.map((s) => (
+              <div class="rounded-2xl border border-line border-l-[5px] border-l-brand-600 bg-mist p-6">
+                <p class="font-display text-5xl font-bold leading-none text-navy-900">{s.value}</p>
+                <p class="mt-2 font-semibold text-muted">{s.label}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SERVICES ============================== -->
+  <section id="services" class="section bg-mist">
+    <div class="container-x">
+      <SectionHeading kicker="What we do" title={h.services.heading} text={h.services.subheading} align="center" />
+
+      {
+        groups.map((g) => (
+          <div class="mt-14 first-of-type:mt-12">
+            <div class="mb-6 flex items-center gap-4">
+              <h3 class="text-3xl md:text-4xl">{GROUP_LABEL[g]}</h3>
+              <span class="h-0.5 flex-1 bg-gradient-to-r from-line to-transparent" aria-hidden="true"></span>
+            </div>
+            <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {serviceLinks
+                .filter((s) => s.group === g)
+                .map((s) => (
+                  <ServiceCard slug={s.slug} name={s.name} text={cardText.get(s.slug)} href={s.href} tag={g === 'repair' ? 'Repair' : 'Installation'} />
+                ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ============================== WHY US ============================== -->
+  <section id="why" class="relative isolate overflow-hidden bg-navy-950 py-16 text-white lg:py-24">
+    <Photo name="bg-footer" alt="" sizes="100vw" widths={[768, 1376]} class="absolute inset-0 -z-20 h-full w-full object-cover opacity-30" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-navy-950/90 via-navy-950/80 to-navy-950"></div>
+    <div class="container-x grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-7">
+        <p class="pill bg-white/10 text-amber-400 ring-1 ring-white/20"><Icon name="badge-check" size={16} />{h.why.badge}</p>
+        <h2 class="h-section mt-5 !text-white">{h.why.heading}</h2>
+        <p class="mt-4 max-w-2xl text-lg text-white/80 md:text-xl">{h.why.text}</p>
+        <ol class="mt-10 space-y-4">
+          {
+            h.why.items.map((it, i) => (
+              <li class="flex gap-5 rounded-2xl border border-white/10 bg-white/[0.06] p-5 backdrop-blur-sm transition hover:border-amber-400/60 hover:bg-white/10 sm:p-6">
+                <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-amber-500 font-display text-2xl font-bold text-navy-950">{i + 1}</span>
+                <div>
+                  <h3 class="text-2xl leading-snug !text-white sm:text-[1.7rem]">{it.title}</h3>
+                  <p class="mt-1.5 text-white/75">{it.text}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+      <div class="relative lg:col-span-5">
+        <div class="overflow-hidden rounded-[2rem] shadow-2xl ring-1 ring-white/20">
+          <Photo name="team-composite" sizes="(min-width: 1024px) 38vw, 100vw" widths={[480, 768, 1024]} class="aspect-[4/5] w-full object-cover" position="50% 40%" />
+        </div>
+        <Brand name="badge-shield" alt="Buffalo Plumbing PROS emergency plumbing services shield badge" width={120} class="absolute -bottom-8 -right-3 h-auto w-28 drop-shadow-2xl sm:-right-8 sm:w-32" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== BEFORE / AFTER ============================== -->
+  <section id="our-work" class="section bg-white">
+    <div class="container-x">
+      <SectionHeading kicker="Our work" title="Plumbing repairs, before & after" align="center" />
+      <ul class="mt-12 grid gap-6 sm:grid-cols-2">
+        {
+          gallery.map((g) => (
+            <li class="group relative overflow-hidden rounded-3xl shadow-card ring-1 ring-line">
+              <Photo name={g.photo} sizes="(min-width: 640px) 45vw, 100vw" widths={[480, 768, 1024]} class="aspect-[16/9] w-full object-cover transition duration-700 group-hover:scale-[1.03]" pictureClass="block overflow-hidden" />
+              <span class="pill absolute left-4 top-4 bg-navy-950/85 text-white backdrop-blur">Before</span>
+              <span class="pill absolute right-4 top-4 bg-amber-500 text-navy-950">After</span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================== FIND US / AREAS ============================== -->
+  <section id="areas" class="section bg-mist">
+    <div class="container-x">
+      <SectionHeading kicker="Service area" title={h.findUs.heading} text={h.findUs.subheading} align="center" />
+      <div class="mt-12 grid gap-8 lg:grid-cols-3">
+        <div class="overflow-hidden rounded-3xl border border-line bg-white shadow-card lg:col-span-2">
+          <iframe class="h-96 w-full lg:h-full lg:min-h-[28rem]" title="Map of Buffalo, NY service area" src={SITE.maps.buffalo} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <div class="space-y-6">
+          <div class="card p-7">
+            <h3 class="text-2xl">{h.findUs.contactHeading}</h3>
+            <ul class="mt-6 space-y-5">
+              <li class="flex items-center gap-4">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700"><Icon name="phone" size={22} /></span>
+                <a href={telHref} class="text-xl font-bold text-navy-900 hover:text-brand-600">{SITE.phone}</a>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700"><Icon name="map-pin" size={22} /></span>
+                <div>
+                  <p class="font-bold text-navy-900">{h.findUs.businessName}</p>
+                  <p class="text-muted">{h.findUs.serving}</p>
+                </div>
+              </li>
+              <li class="flex items-start gap-4">
+                <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700"><Icon name="clock" size={22} /></span>
+                <div>
+                  <p class="font-bold text-navy-900">{h.findUs.hoursLabel}</p>
+                  <p class="text-muted">{h.findUs.hoursValue}</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-brand-700 to-navy-900 p-7 text-white shadow-lift">
+            <div class="absolute -right-8 -top-8 h-36 w-36 rounded-full bg-amber-500/25 blur-2xl" aria-hidden="true"></div>
+            <h3 class="relative text-3xl !text-white">{h.findUs.emergencyHeading}</h3>
+            <p class="relative mt-3 text-white/85">{h.findUs.emergencyText}</p>
+            <CallButton label={h.findUs.emergencyButton} class="relative mt-6 w-full" location="home-emergency" />
+          </div>
+        </div>
+      </div>
+
+      <ul class="mt-12 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-5" aria-label="Buffalo neighborhoods we serve">
+        {
+          areas.map((a) => (
+            <li>
+              <a href={a.href} class="flex items-center justify-between gap-3 rounded-xl border border-line bg-white px-4 py-3 font-semibold text-navy-900 transition hover:border-brand-500 hover:bg-brand-50 hover:text-brand-700">
+                <span class="flex items-center gap-2.5"><Icon name="map-pin" size={18} class="shrink-0 text-amber-600" />{a.name}</span>
+                <span class="text-sm font-medium text-muted">{a.zip}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============================== NATIONWIDE ============================== -->
+  <section id="nationwide" class="section bg-white">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="pill bg-brand-50 text-brand-700 ring-1 ring-brand-100"><Icon name="globe" size={16} />{h.nationwide.badge}</p>
+        <h2 class="h-section mt-5">{h.nationwide.heading}</h2>
+        <p class="mt-4 text-lg text-muted md:text-xl">{h.nationwide.text}</p>
+      </div>
+
+      <div class="mt-12 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
+        <div class="overflow-hidden rounded-3xl border border-line shadow-card">
+          <iframe class="h-96 w-full lg:h-full lg:min-h-[26rem]" title="Map of the United States" src={SITE.maps.usa} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+        <div class="card p-7 sm:p-9">
+          <h3 class="text-3xl">{h.nationwide.whyHeading}</h3>
+          <ul class="mt-7 space-y-6">
+            {
+              h.nationwide.items.map((it, i) => (
+                <li class="flex items-start gap-4">
+                  <span class="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-navy-900 text-amber-400"><Icon name={natIcons[i] ?? 'check'} size={24} /></span>
+                  <div>
+                    <h4 class="text-2xl">{it.title}</h4>
+                    <p class="mt-1 text-muted">{it.text}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="mt-16">
+        <h3 class="text-center text-3xl md:text-4xl">{h.nationwide.statesHeading}</h3>
+        <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+          {
+            h.nationwide.states.map((s) => (
+              <li>
+                <a href={s.url} rel="noopener" class="block rounded-xl border border-line bg-white px-3 py-3 text-center font-semibold text-navy-900 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-500 hover:bg-brand-50 hover:text-brand-700">
+                  {s.name}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== CONTACT ============================== -->
+  <section id="contact" class="relative isolate overflow-hidden bg-navy-950 py-16 text-white lg:py-24">
+    <Photo name="bg-header" alt="" sizes="100vw" widths={[768, 1376]} class="absolute inset-0 -z-20 h-full w-full object-cover opacity-45" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950 via-navy-950/92 to-navy-900/70"></div>
+    <div class="container-x grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <p class="kicker kicker-light">Contact</p>
+        <h2 class="h-section mt-3 !text-white">{h.contact.heading}</h2>
+        <p class="mt-4 text-xl text-white/85">{h.contact.text}</p>
+        <ul class="mt-9 space-y-6">
+          <li class="flex items-center gap-5">
+            <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-amber-500 text-navy-950"><Icon name="phone" size={26} /></span>
+            <div>
+              <p class="font-display text-xl font-bold uppercase tracking-wider text-white/70">Phone</p>
+              <a href={telHref} class="text-2xl font-bold text-white hover:text-amber-400">{SITE.phone}</a>
+            </div>
+          </li>
+          <li class="flex items-center gap-5">
+            <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-amber-500 text-navy-950"><Icon name="map-pin" size={26} /></span>
+            <div>
+              <p class="font-display text-xl font-bold uppercase tracking-wider text-white/70">Service Area</p>
+              <p class="text-2xl font-semibold">Buffalo, NY</p>
+            </div>
+          </li>
+          <li class="flex items-center gap-5">
+            <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-amber-500 text-navy-950"><Icon name="clock" size={26} /></span>
+            <div>
+              <p class="font-display text-xl font-bold uppercase tracking-wider text-white/70">Hours</p>
+              <p class="text-xl font-semibold leading-snug">
+                {h.contact.hours.map((line, i) => (<><span>{line}</span>{i < h.contact.hours.length - 1 && <br />}</>))}
+              </p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="overflow-hidden rounded-3xl bg-white text-ink shadow-2xl">
+        <Photo name="technician-greeting" sizes="(min-width: 1024px) 45vw, 100vw" widths={[480, 768, 1024]} class="aspect-[16/9] w-full object-cover" position="50% 25%" />
+        <div class="p-7 text-center sm:p-9">
+          <h3 class="text-3xl md:text-4xl">{h.contact.formHeading}</h3>
+          <p class="mt-3 text-lg text-muted">{h.contact.formText}</p>
+          <CallButton label={h.contact.formButton} size="lg" class="mt-6 w-full" location="home-contact" />
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

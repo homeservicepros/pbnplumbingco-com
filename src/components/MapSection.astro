@@ -1,0 +1,66 @@
+---
+import Icon from './Icon.astro';
+import CallButton from './CallButton.astro';
+import SectionHeading from './SectionHeading.astro';
+import { SITE, telHref } from '../config/site';
+import { home } from '../lib/content';
+
+interface Props {
+  heading: string;
+  subheading: string;
+  mapSrc?: string;
+  /** background tone */
+  tone?: 'white' | 'mist';
+  /** page-specific contact card copy (area pages have their own); defaults to the homepage card */
+  contact?: { heading: string; businessName: string; serving: string; zipLine?: string; hoursLabel: string; hoursValue: string };
+}
+const { heading, subheading, mapSrc = SITE.maps.buffalo, tone = 'white', contact } = Astro.props;
+const f = home.findUs;
+const c = contact ?? { heading: f.contactHeading, businessName: f.businessName, serving: f.serving, hoursLabel: f.hoursLabel, hoursValue: f.hoursValue };
+---
+
+<section class:list={['section', tone === 'mist' ? 'bg-mist' : 'bg-white']} aria-labelledby="map-heading">
+  <div class="container-x">
+    <SectionHeading kicker="Find us" title={heading} text={subheading} align="center" />
+    <div class="mt-10 grid gap-8 lg:grid-cols-3">
+      <div class="overflow-hidden rounded-2xl border border-line bg-white shadow-card lg:col-span-2">
+        <iframe
+          class="h-96 w-full lg:h-full lg:min-h-[26rem]"
+          title="Map of Buffalo, NY service area"
+          src={mapSrc}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <div class="space-y-6">
+        <div class="card p-6 sm:p-8">
+          <h3 class="text-2xl">{c.heading}</h3>
+          <ul class="mt-6 space-y-5">
+            <li class="flex items-center gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700"><Icon name="phone" size={22} /></span>
+              <a href={telHref} class="text-xl font-bold text-navy-900 hover:text-brand-600">{SITE.phone}</a>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700"><Icon name="map-pin" size={22} /></span>
+              <div>
+                <p class="font-bold text-navy-900">{c.businessName}</p>
+                <p class="text-muted">{c.serving}</p>
+                {c.zipLine && <p class="text-sm text-muted">{c.zipLine}</p>}
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-50 text-brand-700"><Icon name="clock" size={22} /></span>
+              <div>
+                <p class="font-bold text-navy-900">{c.hoursLabel}</p>
+                <p class="text-muted">{c.hoursValue}</p>
+              </div>
+            </li>
+          </ul>
+          <CallButton class="mt-8 w-full" location="map-section" />
+        </div>
+        <slot name="extra" />
+      </div>
+    </div>
+  </div>
+</section>

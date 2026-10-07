@@ -1,0 +1,89 @@
+{
+  "name": "Riverside",
+  "zip": "14207",
+  "title": "Residential Plumbing Services in Riverside near me 14207 - Water Heater Repair, Drain Cleaning, Leak Detection, Emergency Plumbing",
+  "description": "Expert residential plumbing services in Riverside Buffalo 14207. 24/7 emergency repairs, drain cleaning & water heater installation. Call (716) 610-1160 near me!",
+  "h1": "Professional Residential Plumbing Services in Riverside, Buffalo NY",
+  "heroText": "Expert residential plumbing services in Riverside Buffalo 14207. 24/7 emergency repairs, drain cleaning & water heater installation. Call (716) 610-1160 near me!",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS delivers comprehensive residential plumbing solutions throughout Riverside's 14207 area. Our expert team understands the unique plumbing challenges faced by homeowners in this historic Buffalo neighborhood, from vintage home repairs to modern plumbing installations.</p><h2>Expert Plumbing Services in Riverside</h2><ul><li>24/7 Emergency Plumbing Response</li><li>Water Heater Installation &amp; Repair</li><li>Drain Cleaning &amp; Camera Inspection</li><li>Pipe Repair &amp; Replacement</li></ul><h2>Riverside Plumbing Service Pricing</h2><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Emergency Service Call</td><td>$89</td></tr><tr><td>Drain Cleaning</td><td>$149</td></tr><tr><td>Water Heater Installation</td><td>$899+</td></tr></table><p>Serving the diverse residential community of Riverside, we specialize in both emergency repairs and scheduled maintenance. Our local presence in the 14207 zip code ensures quick response times and familiar expertise with the area's plumbing infrastructure.</p>",
+  "whyHeading": "Why Choose Us in Riverside?",
+  "whyItems": [
+    {
+      "title": "Dedicated Riverside team with extensive knowledge of local plumbing codes and regulations",
+      "text": "Trusted by Riverside residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Rapid response times within 30 minutes for Riverside 14207 emergencies",
+      "text": "Trusted by Riverside residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Specialized experience with Riverside's older home plumbing systems",
+      "text": "Trusted by Riverside residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Trusted by local Riverside businesses and homeowners since 2010",
+      "text": "Trusted by Riverside residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in Riverside",
+    "text": "We proudly serve Riverside and surrounding neighborhoods including Black Rock, Grant-Amherst, West Hertel, North Buffalo, and Tonawanda. Our service area covers all of 14207 and nearby zip codes, ensuring comprehensive plumbing support for the entire Riverside community and beyond."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving Riverside with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "Riverside Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14207"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in Riverside",
+  "mapSubheading": "Local Residential Plumbing Services services in Riverside and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving Riverside, Buffalo",
+    "zipLine": "Zip Code: 14207",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "elmwood-village-14222",
+        "name": "Elmwood Village"
+      },
+      {
+        "slug": "north-buffalo-14216",
+        "name": "North Buffalo"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}

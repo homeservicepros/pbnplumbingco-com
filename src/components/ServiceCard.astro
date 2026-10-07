@@ -1,0 +1,29 @@
+---
+import Icon from './Icon.astro';
+import { serviceIcon } from '../lib/icons';
+
+interface Props {
+  slug: string;
+  name: string;
+  text?: string;
+  href: string;
+  tag?: string;
+  /** compact variant: no description */
+  compact?: boolean;
+}
+const { slug, name, text, href, tag, compact = false } = Astro.props;
+---
+
+<a href={href} class="card card-hover group flex h-full flex-col p-6">
+  <span class="flex items-start justify-between gap-3">
+    <span class="grid h-14 w-14 place-items-center rounded-2xl bg-navy-900 text-amber-400 transition group-hover:scale-105 group-hover:bg-brand-600 group-hover:text-white">
+      <Icon name={serviceIcon(slug)} size={28} />
+    </span>
+    {tag && <span class="pill bg-brand-50 text-brand-700">{tag}</span>}
+  </span>
+  <span class="mt-5 block font-display text-2xl font-bold leading-tight text-navy-900">{name}</span>
+  {!compact && text && <span class="mt-2 block text-muted">{text}</span>}
+  <span class="mt-auto flex items-center gap-1.5 pt-5 font-semibold text-brand-600">
+    Learn More <Icon name="arrow-right" size={18} class="transition group-hover:translate-x-1" />
+  </span>
+</a>

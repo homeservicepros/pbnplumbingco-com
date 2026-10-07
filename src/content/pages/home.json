@@ -1,0 +1,389 @@
+{
+  "title": "Buffalo Plumbing PROS - Professional Residential Plumbing Services Services in Buffalo",
+  "description": "24/7 residential plumbing services in Buffalo NY (14086). Expert emergency plumbers serving all Buffalo neighborhoods. Call (716) 610-1160 for same-day service!",
+  "keywords": "Residential Plumbing Services, Buffalo, Residential Plumbing Services services, professional Residential Plumbing Services",
+  "hero": {
+    "badge": "Same Day Service Available",
+    "h1": "Buffalo's Most Trusted Residential Plumbing Services - Available 24/7",
+    "text": "Professional plumbing solutions serving all Buffalo neighborhoods and zip codes 14202-14222. Emergency response in 30 minutes or less!",
+    "button": "Don't Wait Until It's Too Late! Call (716) 610-1160 Now for Fast, Professional Plumbing Service",
+    "cards": [
+      {
+        "title": "Plumbing Repair Buffalo NY",
+        "text": "Professional plumbing repair buffalo ny services in Buffalo and surrounding areas.",
+        "slug": "plumbing-repair-buffalo-ny"
+      },
+      {
+        "title": "Drain Repair Buffalo NY",
+        "text": "Professional drain repair buffalo ny services in Buffalo and surrounding areas.",
+        "slug": "drain-repair-buffalo-ny"
+      },
+      {
+        "title": "Toilet Repair Buffalo NY",
+        "text": "Professional toilet repair buffalo ny services in Buffalo and surrounding areas.",
+        "slug": "toilet-repair-buffalo-ny"
+      }
+    ],
+    "stats": [
+      {
+        "value": "500+",
+        "label": "Projects Completed"
+      },
+      {
+        "value": "98%",
+        "label": "Customer Satisfaction"
+      },
+      {
+        "value": "15+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "24/7",
+        "label": "Emergency Service"
+      }
+    ]
+  },
+  "about": {
+    "heading": "About Buffalo Plumbing PROS",
+    "bodyHtml": "<p>Welcome to Buffalo Plumbing PROS, your premier residential plumbing service provider serving Buffalo and surrounding communities since 2005. Our licensed and insured technicians are available 24/7 for all your emergency plumbing needs across Downtown, Allentown, and all Buffalo neighborhoods.</p><p>From routine maintenance to complex installations, we handle everything including water heater repairs, drain cleaning, leak detection, and complete bathroom remodels. Our upfront pricing and satisfaction guarantee have made us the most trusted plumbing team in Western New York.</p>\n<p>Ceiling leaks are not always caused by plumbing issues. In many cases, water intrusion comes from damaged roofing materials or improperly sealed flashing. Before proceeding with pipe repairs, it’s important to inspect the exterior and <a href=\"https://1roofrepairmadisonwi.com/\">fix a leaking roof in Madison</a> if the source of the problem is coming from above.</p>\n<p>We're proud to maintain an A+ BBB rating and offer special discounts for seniors and military personnel. All work is performed to code and backed by our industry-leading warranty.</p>",
+    "stats": [
+      {
+        "value": "15+",
+        "label": "Years Experience"
+      },
+      {
+        "value": "500+",
+        "label": "Happy Customers"
+      }
+    ],
+    "imageAlt": "About Buffalo Plumbing PROS - Residential Plumbing Services experts in Buffalo",
+    "badge": "Licensed & Insured",
+    "badgeSub": "Professional Residential Plumbing Services Services"
+  },
+  "services": {
+    "heading": "Our Services",
+    "subheading": "Professional Residential Plumbing Services solutions for all your needs",
+    "cards": [
+      {
+        "title": "Plumbing Repair Buffalo NY",
+        "text": "Professional plumbing repair buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "plumbing-repair-buffalo-ny"
+      },
+      {
+        "title": "Drain Repair Buffalo NY",
+        "text": "Professional drain repair buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "drain-repair-buffalo-ny"
+      },
+      {
+        "title": "Toilet Repair Buffalo NY",
+        "text": "Professional toilet repair buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "toilet-repair-buffalo-ny"
+      },
+      {
+        "title": "Shower Repair Buffalo NY",
+        "text": "Professional shower repair buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "shower-repair-buffalo-ny"
+      },
+      {
+        "title": "Faucet Repair Buffalo NY",
+        "text": "Professional faucet repair buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "faucet-repair-buffalo-ny"
+      },
+      {
+        "title": "Water Heater Repair Buffalo NY",
+        "text": "Professional water heater repair buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "water-heater-repair-buffalo-ny"
+      },
+      {
+        "title": "Sewer Repair Buffalo NY",
+        "text": "Professional sewer repair buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "sewer-repair-buffalo-ny"
+      },
+      {
+        "title": "Water Pipe Repair Buffalo NY",
+        "text": "Professional water pipe repair buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "water-pipe-repair-buffalo-ny"
+      },
+      {
+        "title": "Water Heater Installation Buffalo NY",
+        "text": "Professional water heater installation buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "water-heater-installation-buffalo-ny"
+      },
+      {
+        "title": "Toilet Installation Buffalo NY",
+        "text": "Professional toilet installation buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "toilet-installation-buffalo-ny"
+      },
+      {
+        "title": "Sink Installation Buffalo NY",
+        "text": "Professional sink installation buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "sink-installation-buffalo-ny"
+      },
+      {
+        "title": "Bathtub Installation Buffalo NY",
+        "text": "Professional bathtub installation buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "bathtub-installation-buffalo-ny"
+      },
+      {
+        "title": "Shower Installation Buffalo NY",
+        "text": "Professional shower installation buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "shower-installation-buffalo-ny"
+      },
+      {
+        "title": "Faucet Installation Buffalo NY",
+        "text": "Professional faucet installation buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "faucet-installation-buffalo-ny"
+      },
+      {
+        "title": "Drain Installation Buffalo NY",
+        "text": "Professional drain installation buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "drain-installation-buffalo-ny"
+      },
+      {
+        "title": "Sewer Installation Buffalo NY",
+        "text": "Professional sewer installation buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "sewer-installation-buffalo-ny"
+      },
+      {
+        "title": "Plumbing Installation or Replacement Buffalo NY",
+        "text": "Professional plumbing installation or replacement buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "plumbing-installation-or-replacement-buffalo-ny"
+      },
+      {
+        "title": "Water Purification System Installation Buffalo NY",
+        "text": "Professional water purification system installation buffalo ny services in Buffalo and surrounding areas with guaranteed quality results.",
+        "slug": "water-purification-system-installation-buffalo-ny"
+      }
+    ]
+  },
+  "why": {
+    "badge": "Trusted by 500+ Customers",
+    "heading": "Why Customers Choose Us",
+    "text": "Discover what sets Buffalo Plumbing PROS apart from other Residential Plumbing Services companies in Buffalo",
+    "items": [
+      {
+        "title": "24/7 Emergency Response - On-site within 30 minutes in Buffalo area",
+        "text": "Professional Residential Plumbing Services service you can trust in Buffalo."
+      },
+      {
+        "title": "Licensed & Insured Master Plumbers with 20+ years experience",
+        "text": "Professional Residential Plumbing Services service you can trust in Buffalo."
+      },
+      {
+        "title": "Upfront, Flat-Rate Pricing - No Hidden Fees or Overtime Charges",
+        "text": "Professional Residential Plumbing Services service you can trust in Buffalo."
+      },
+      {
+        "title": "Local Family-Owned Business Serving All Buffalo Zip Codes",
+        "text": "Professional Residential Plumbing Services service you can trust in Buffalo."
+      },
+      {
+        "title": "100% Satisfaction Guarantee on All Plumbing Services",
+        "text": "Professional Residential Plumbing Services service you can trust in Buffalo."
+      }
+    ]
+  },
+  "findUs": {
+    "heading": "Find Us in Buffalo",
+    "subheading": "Serving Buffalo and surrounding areas with professional Residential Plumbing Services services",
+    "contactHeading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving Buffalo, NY",
+    "hoursLabel": "Business Hours",
+    "hoursValue": "24/7 Emergency Service",
+    "emergencyHeading": "Emergency Service",
+    "emergencyText": "Need immediate Residential Plumbing Services assistance? We're available 24/7 for emergency calls.",
+    "emergencyButton": "Call Emergency Line"
+  },
+  "nationwide": {
+    "badge": "Nationwide Coverage",
+    "heading": "Professional Plumbing Services Serving Across USA",
+    "text": "From our headquarters in Buffalo, NY, we proudly serve plumbing customers across the United States with professional plumbing contractors near your area with reliable service and expert craftsmanship.",
+    "whyHeading": "Why Choose Nationwide Service?",
+    "items": [
+      {
+        "title": "Licensed & Insured Nationwide",
+        "text": "Fully licensed and insured to provide plumbing services across all 50 states with comprehensive coverage."
+      },
+      {
+        "title": "24/7 Emergency Response",
+        "text": "Round-the-clock emergency plumbing services available nationwide for urgent repairs and emergencies."
+      },
+      {
+        "title": "Industry-Leading Expertise",
+        "text": "Over 15 years of plumbing experience with certified professionals serving residential and commercial clients nationwide."
+      }
+    ],
+    "statesHeading": "States We Serve",
+    "states": [
+      {
+        "name": "New York",
+        "url": "https://ny.pbmplumbingco.com/"
+      },
+      {
+        "name": "New Mexico",
+        "url": "https://nm.pbmplumbingco.com/"
+      },
+      {
+        "name": "Georgia",
+        "url": "https://ga.pbmplumbingco.com/"
+      },
+      {
+        "name": "Texas",
+        "url": "https://tx.pbmplumbingco.com/"
+      },
+      {
+        "name": "Maryland",
+        "url": "https://md.pbmplumbingco.com/"
+      },
+      {
+        "name": "Louisiana",
+        "url": "https://la.pbmplumbingco.com/"
+      },
+      {
+        "name": "Alabama",
+        "url": "https://al.pbmplumbingco.com/"
+      },
+      {
+        "name": "Massachusetts",
+        "url": "https://ma.pbmplumbingco.com/"
+      },
+      {
+        "name": "West Virginia",
+        "url": "https://wv.pbmplumbingco.com/"
+      },
+      {
+        "name": "North Carolina",
+        "url": "https://nc.pbmplumbingco.com/"
+      },
+      {
+        "name": "Illinois",
+        "url": "https://il.pbmplumbingco.com/"
+      },
+      {
+        "name": "Ohio",
+        "url": "https://oh.pbmplumbingco.com/"
+      },
+      {
+        "name": "Colorado",
+        "url": "https://co.pbmplumbingco.com/"
+      },
+      {
+        "name": "South Carolina",
+        "url": "https://sc.pbmplumbingco.com/"
+      },
+      {
+        "name": "Iowa",
+        "url": "https://ia.pbmplumbingco.com/"
+      },
+      {
+        "name": "Michigan",
+        "url": "https://mi.pbmplumbingco.com/"
+      },
+      {
+        "name": "Indiana",
+        "url": "https://in.pbmplumbingco.com/"
+      },
+      {
+        "name": "California",
+        "url": "https://ca.pbmplumbingco.com/"
+      },
+      {
+        "name": "Connecticut",
+        "url": "https://ct.pbmplumbingco.com/"
+      },
+      {
+        "name": "Hawaii",
+        "url": "https://hi.pbmplumbingco.com/"
+      },
+      {
+        "name": "Florida",
+        "url": "https://fl.pbmplumbingco.com/"
+      },
+      {
+        "name": "Missouri",
+        "url": "https://mo.pbmplumbingco.com/"
+      },
+      {
+        "name": "Tennessee",
+        "url": "https://tn.pbmplumbingco.com/"
+      },
+      {
+        "name": "Nevada",
+        "url": "https://nv.pbmplumbingco.com/"
+      },
+      {
+        "name": "Kentucky",
+        "url": "https://ky.pbmplumbingco.com/"
+      },
+      {
+        "name": "Nebraska",
+        "url": "https://ne.pbmplumbingco.com/"
+      },
+      {
+        "name": "Wisconsin",
+        "url": "https://wi.pbmplumbingco.com/"
+      },
+      {
+        "name": "Minnesota",
+        "url": "https://mn.pbmplumbingco.com/"
+      },
+      {
+        "name": "Oklahoma",
+        "url": "https://ok.pbmplumbingco.com/"
+      },
+      {
+        "name": "Pennsylvania",
+        "url": "https://pa.pbmplumbingco.com/"
+      },
+      {
+        "name": "Arizona",
+        "url": "https://az.pbmplumbingco.com/"
+      },
+      {
+        "name": "Oregon",
+        "url": "https://or.pbmplumbingco.com/"
+      },
+      {
+        "name": "Virginia",
+        "url": "https://va.pbmplumbingco.com/"
+      },
+      {
+        "name": "Utah",
+        "url": "https://ut.pbmplumbingco.com/"
+      },
+      {
+        "name": "Puerto Rico",
+        "url": "https://pr.pbmplumbingco.com/"
+      },
+      {
+        "name": "Washington",
+        "url": "https://wa.pbmplumbingco.com/"
+      },
+      {
+        "name": "Kansas",
+        "url": "https://ks.pbmplumbingco.com/"
+      },
+      {
+        "name": "New Jersey",
+        "url": "https://nj.pbmplumbingco.com/"
+      },
+      {
+        "name": "District of Columbia",
+        "url": "https://dc.pbmplumbingco.com/"
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Get In Touch",
+    "text": "Ready to get started? Contact us today for a free estimate!",
+    "hours": [
+      "Mon-Fri: 8AM-6PM",
+      "Sat: 8AM-4PM",
+      "24/7 Emergency"
+    ],
+    "formHeading": "Request Free Estimate",
+    "formText": "Call us now for immediate assistance and free estimates",
+    "formButton": "Call (716) 610-1160"
+  }
+}

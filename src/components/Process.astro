@@ -1,0 +1,26 @@
+---
+interface Props {
+  steps: string[];
+}
+const { steps } = Astro.props;
+/** "Schedule Your Service: Call our Buffalo office…" → bold lead + description; wording is untouched. */
+const parts = steps.map((s) => {
+  const i = s.indexOf(':');
+  return i > 0 && i < 48 ? { lead: s.slice(0, i), rest: s.slice(i + 1).trim() } : { lead: s, rest: '' };
+});
+---
+
+<ol class="relative space-y-0">
+  {
+    parts.map((p, i) => (
+      <li class="relative flex gap-5 pb-8 last:pb-0">
+        {i < parts.length - 1 && <span class="absolute left-[1.35rem] top-12 h-[calc(100%-2.5rem)] w-0.5 bg-gradient-to-b from-brand-500 to-line" aria-hidden="true" />}
+        <span class="relative z-10 grid h-11 w-11 shrink-0 place-items-center rounded-full bg-navy-900 font-display text-xl font-bold text-white ring-4 ring-white">{i + 1}</span>
+        <div class="pt-1.5">
+          <p class="font-display text-2xl font-bold leading-tight text-navy-900">{p.lead}{p.rest && ':'}</p>
+          {p.rest && <p class="mt-1 text-lg text-muted">{p.rest}</p>}
+        </div>
+      </li>
+    ))
+  }
+</ol>

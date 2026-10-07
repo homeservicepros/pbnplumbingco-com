@@ -1,0 +1,19 @@
+---
+interface Props {
+  kicker?: string;
+  title: string;
+  text?: string;
+  align?: 'left' | 'center';
+  light?: boolean;
+  /** heading level for the title (h1 only on page heroes) */
+  as?: 'h2' | 'h3';
+  class?: string;
+}
+const { kicker, title, text, align = 'left', light = false, as: Tag = 'h2', class: className = '' } = Astro.props;
+---
+
+<div class:list={['max-w-3xl', align === 'center' && 'mx-auto text-center', className]}>
+  {kicker && <p class:list={['kicker', light && 'kicker-light', align === 'center' && 'justify-center']}>{kicker}</p>}
+  <Tag class:list={['h-section', kicker && 'mt-3', light && '!text-white']}>{title}</Tag>
+  {text && <p class:list={['mt-4 text-lg md:text-xl', light ? 'text-white/80' : 'text-muted']}>{text}</p>}
+</div>

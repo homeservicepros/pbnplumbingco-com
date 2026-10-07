@@ -1,0 +1,15 @@
+---
+import { enhanceProse } from '../lib/prose';
+
+interface Props {
+  html: string;
+  /** Set when the caller already ran enhanceProse (e.g. to build a table of contents). */
+  enhanced?: boolean;
+  wide?: boolean;
+  class?: string;
+}
+const { html, enhanced = false, wide = false, class: className } = Astro.props;
+const out = enhanced ? html : enhanceProse(html).html;
+---
+
+<div class:list={['prose-bp', wide && 'prose-wide', className]} set:html={out} />

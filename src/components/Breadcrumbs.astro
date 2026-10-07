@@ -1,0 +1,35 @@
+---
+import Icon from './Icon.astro';
+
+export interface Crumb {
+  name: string;
+  /** omit on the current page */
+  href?: string;
+}
+interface Props {
+  items: Crumb[];
+  light?: boolean;
+}
+const { items, light = false } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb">
+  <ol class:list={['flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.95rem]', light ? 'text-white/75' : 'text-muted']}>
+    {
+      items.map((c, i) => (
+        <li class="flex items-center gap-2">
+          {c.href ? (
+            <a href={c.href} class:list={['underline-offset-4 hover:underline', light ? 'hover:text-white' : 'hover:text-navy-900']}>
+              {c.name}
+            </a>
+          ) : (
+            <span aria-current="page" class:list={['font-semibold', light ? 'text-white' : 'text-navy-900']}>
+              {c.name}
+            </span>
+          )}
+          {i < items.length - 1 && <Icon name="chevron-right" size={14} class="opacity-60" />}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

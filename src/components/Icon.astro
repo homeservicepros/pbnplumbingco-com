@@ -1,0 +1,35 @@
+---
+/**
+ * Inline SVG icon from the Lucide set (resolved at build time — zero client JS, no icon-font request).
+ * Decorative by default; pass `label` to expose it to assistive tech.
+ */
+import lucide from '@iconify-json/lucide/icons.json';
+
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+  label?: string;
+}
+
+const { name, size = 24, class: className, label } = Astro.props;
+
+type IconData = { body: string };
+const icons = lucide.icons as Record<string, IconData>;
+const aliases = lucide.aliases as Record<string, { parent: string }>;
+const data = icons[name] ?? (aliases[name] ? icons[aliases[name]!.parent] : undefined);
+if (!data) throw new Error(`Unknown Lucide icon: "${name}"`);
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  width={size}
+  height={size}
+  class={className}
+  aria-hidden={label ? undefined : 'true'}
+  role={label ? 'img' : undefined}
+  aria-label={label}
+  focusable="false"
+  set:html={data.body}
+/>

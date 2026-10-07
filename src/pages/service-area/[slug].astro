@@ -1,0 +1,162 @@
+---
+import Base from '../../layouts/Base.astro';
+import InnerHero from '../../components/InnerHero.astro';
+import Prose from '../../components/Prose.astro';
+import MapSection from '../../components/MapSection.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CallButton from '../../components/CallButton.astro';
+import Brand from '../../components/Brand.astro';
+import Icon from '../../components/Icon.astro';
+import { absoluteUrl } from '../../config/site';
+import { getAreas, getAreaLinks, serviceLinks, areaHref } from '../../lib/content';
+import { areaPhoto } from '../../lib/media';
+import { graph, businessNode, websiteNode, webPageNode, breadcrumbNode, areaPlace } from '../../lib/schema';
+
+export async function getStaticPaths() {
+  const areas = await getAreas();
+  return areas.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const slug = entry.id;
+const path = `/service-area/${slug}`;
+const url = absoluteUrl(path);
+const heroPhoto = areaPhoto(slug);
+
+const areaLinks = await getAreaLinks();
+const self = areaLinks.find((a) => a.slug === slug)!;
+const nearby = areaLinks.filter((a) => a.slug !== slug);
+
+const crumbs = [{ name: 'Home', href: '/' }, { name: 'Service Areas', href: '/#areas' }, { name: d.name }];
+
+const jsonLd = [
+  graph([
+    businessNode({ areas: areaLinks, services: serviceLinks }),
+    websiteNode(),
+    webPageNode({ url, name: d.title, description: d.description, about: `${url}#place` }),
+    breadcrumbNode(url, [
+      { name: 'Home', path: '/' },
+      { name: d.name, path },
+    ]),
+    { ...areaPlace(self), '@id': `${url}#place`, containedInPlace: { '@type': 'City', name: 'Buffalo', containedInPlace: { '@type': 'State', name: 'New York' } } },
+  ]),
+];
+
+const chips = [
+  { icon: 'map-pin', label: `${d.name} · ${d.zip}` },
+  { icon: 'clock', label: '24/7 Emergency Service' },
+  { icon: 'badge-check', label: 'Licensed & Insured' },
+];
+---
+
+<Base title={d.title} description={d.description} path={path} ogPhoto={heroPhoto} jsonLd={jsonLd}>
+  <InnerHero crumbs={crumbs} h1={d.h1} text={d.heroText} buttonLabel={d.heroButton} photo={heroPhoto} chips={chips} />
+
+  <section class="section bg-white">
+    <div class="container-x grid gap-12 lg:grid-cols-12 lg:gap-14">
+      <article class="lg:col-span-8">
+        <Prose html={d.bodyHtml} />
+
+        <div class="mt-16">
+          <h2 class="text-3xl md:text-4xl">{d.whyHeading}</h2>
+          <ul class="mt-7 grid gap-4 sm:grid-cols-2">
+            {
+              d.whyItems.map((w) => (
+                <li class="rounded-2xl border border-line border-l-[5px] border-l-brand-600 bg-mist p-6">
+                  <span class="mb-3 grid h-10 w-10 place-items-center rounded-full bg-navy-900 text-amber-400"><Icon name="star" size={20} /></span>
+                  <h3 class="text-2xl leading-tight">{w.title}</h3>
+                  <p class="mt-2 text-muted">{w.text}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="mt-14 rounded-3xl border border-amber-500/40 bg-amber-50 p-7 sm:p-9">
+          <h2 class="flex items-center gap-3 text-3xl">
+            <Icon name="map-pin" size={30} class="shrink-0 text-amber-600" />
+            {d.coverage.heading}
+          </h2>
+          <p class="mt-4 text-lg leading-relaxed text-ink/90">{d.coverage.text}</p>
+        </div>
+      </article>
+
+      <aside class="lg:col-span-4" aria-label="Contact and service info">
+        <div class="lg:sticky lg:top-28">
+          <div class="relative overflow-hidden rounded-3xl bg-navy-900 p-7 text-white shadow-lift">
+            <div class="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-brand-600/30 blur-2xl" aria-hidden="true"></div>
+            <Brand name="badge-shield" alt="" width={88} class="relative h-auto w-[5.5rem] drop-shadow-xl" />
+            <h2 class="relative mt-5 text-3xl !text-white">{d.sidebarCta.heading}</h2>
+            <p class="relative mt-3 text-white/85">{d.sidebarCta.text}</p>
+            <CallButton label={d.sidebarCta.button} class="relative mt-6 w-full" size="lg" location="area-sidebar" />
+
+            <div class="relative mt-7 border-t border-white/15 pt-6">
+              <h3 class="flex items-center gap-2 text-xl !text-white"><Icon name="map-pin" size={20} class="text-amber-400" />{d.infoHeading}</h3>
+              <dl class="mt-4 space-y-3">
+                {
+                  d.infoRows.map((r) => (
+                    <div class="flex items-center justify-between gap-4 border-b border-white/10 pb-3 last:border-0 last:pb-0">
+                      <dt class="text-white/70">{r.label}:</dt>
+                      <dd class="text-right font-semibold text-white">{r.value}</dd>
+                    </div>
+                  ))
+                }
+              </dl>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section bg-mist" aria-labelledby="services-heading">
+    <div class="container-x">
+      <SectionHeading kicker={`Plumbing in ${d.name}`} title={d.servicesHeading} />
+      <div class="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {serviceLinks.map((s) => <ServiceCard slug={s.slug} name={s.name} href={s.href} compact />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-white pb-0 lg:pb-0" aria-labelledby="nearby-heading">
+    <div class="container-x">
+      <SectionHeading kicker="All neighborhoods" title="More Buffalo neighborhoods we serve" />
+      <ul class="mt-8 grid gap-2.5 sm:grid-cols-2 lg:grid-cols-4">
+        {
+          nearby.map((a) => (
+            <li>
+              <a href={a.href} class="flex items-center justify-between gap-3 rounded-xl border border-line px-4 py-3 font-semibold text-navy-900 transition hover:border-brand-500 hover:bg-brand-50 hover:text-brand-700">
+                <span class="flex items-center gap-2.5"><Icon name="map-pin" size={18} class="text-amber-600" />{a.name}</span>
+                <span class="text-sm font-medium text-muted">{a.zip}</span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <MapSection heading={d.mapHeading} subheading={d.mapSubheading} contact={d.mapContact}>
+    <div slot="extra" class="card p-6 sm:p-8">
+      <h3 class="flex items-center gap-2.5 text-2xl"><Icon name="map" size={22} class="text-amber-600" />{d.nearby.heading}</h3>
+      <ul class="mt-5 space-y-1">
+        {
+          d.nearby.links.map((n) => (
+            <li>
+              <a href={areaHref(n.slug)} class="flex items-center gap-2.5 rounded-lg px-2 py-2 font-semibold text-brand-700 transition hover:bg-brand-50 hover:text-navy-900">
+                <Icon name="map-pin" size={18} class="shrink-0 text-amber-600" />{n.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="mt-4 border-t border-line pt-4">
+        <a href={d.nearby.viewAll.href} class="inline-flex items-center gap-2 font-semibold text-brand-700 hover:text-navy-900">
+          <Icon name="arrow-left" size={18} />{d.nearby.viewAll.label}
+        </a>
+      </div>
+    </div>
+  </MapSection>
+</Base>

@@ -1,0 +1,89 @@
+{
+  "name": "West Side",
+  "zip": "14213",
+  "title": "Residential Plumbing Services in West Side Buffalo 14213 - Emergency Repairs, Water Heaters, Drain Cleaning, Leak Detection",
+  "description": "Expert residential plumbing services in West Side Buffalo 14213. 24/7 emergency repairs, drain cleaning & more. Local trusted plumbers. Call (716) 610-1160 now!",
+  "h1": "Professional Residential Plumbing Services in West Side Buffalo",
+  "heroText": "Expert residential plumbing services in West Side Buffalo 14213. 24/7 emergency repairs, drain cleaning & more. Local trusted plumbers. Call (716) 610-1160 now!",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS delivers expert residential plumbing services throughout West Side's historic 14213 neighborhood. Our local team understands the unique plumbing challenges faced by the area's classic Victorian homes and newer developments.</p><h2>Comprehensive Plumbing Solutions in West Side</h2><p>We specialize in addressing the specific needs of West Side properties, from maintaining century-old pipe systems to installing modern plumbing fixtures. Our services include:</p><ul><li>Emergency plumbing repairs</li><li>Water heater installation and maintenance</li><li>Drain cleaning and camera inspection</li><li>Pipe repair and replacement</li><li>Fixture installation and upgrades</li></ul><h3>Residential Plumbing Pricing in 14213</h3><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Drain Cleaning</td><td>$99</td></tr><tr><td>Water Heater Installation</td><td>$899</td></tr><tr><td>Emergency Service</td><td>$129</td></tr></table>",
+  "whyHeading": "Why Choose Us in West Side?",
+  "whyItems": [
+    {
+      "title": "Deep familiarity with West Side's historic home plumbing systems",
+      "text": "Trusted by West Side residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Rapid response times - average 30 minutes to West Side locations",
+      "text": "Trusted by West Side residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Bilingual plumbers serving our diverse West Side community",
+      "text": "Trusted by West Side residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Special discounts for 14213 neighborhood residents",
+      "text": "Trusted by West Side residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in West Side",
+    "text": "We proudly serve all of West Side Buffalo (14213) including Grant Street, Richmond Avenue, Connecticut Street, and surrounding areas. Our service area extends to neighboring Elmwood Village, Black Rock, Riverside, and Downtown Buffalo. Emergency services available 24/7 throughout the entire coverage area."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving West Side with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "West Side Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14213"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in West Side",
+  "mapSubheading": "Local Residential Plumbing Services services in West Side and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving West Side, Buffalo",
+    "zipLine": "Zip Code: 14213",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "elmwood-village-14222",
+        "name": "Elmwood Village"
+      },
+      {
+        "slug": "north-buffalo-14216",
+        "name": "North Buffalo"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}

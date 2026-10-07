@@ -1,0 +1,89 @@
+{
+  "name": "South Buffalo",
+  "zip": "14220",
+  "title": "Residential Plumbing Services in South Buffalo near me 14220 - Water Heater Repair, Drain Cleaning, Leak Detection, Emergency Plumbing",
+  "description": "Expert residential plumbing services in South Buffalo 14220. Local plumbers available 24/7 for emergencies. Call Buffalo Plumbing PROS at (716) 610-1160 for same-day service.",
+  "h1": "Professional Residential Plumbing Services in South Buffalo, NY",
+  "heroText": "Expert residential plumbing services in South Buffalo 14220. Local plumbers available 24/7 for emergencies. Call Buffalo Plumbing PROS at (716) 610-1160 for same-day service.",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS delivers comprehensive residential plumbing solutions throughout South Buffalo's 14220 area. Our team specializes in everything from emergency repairs to complete bathroom remodels, serving the unique needs of South Buffalo's historic homes and modern residences.</p><h2>Expert Plumbing Services in South Buffalo</h2><ul><li>24/7 Emergency Plumbing Response</li><li>Water Heater Installation &amp; Repair</li><li>Drain Cleaning &amp; Camera Inspection</li><li>Pipe Repair &amp; Replacement</li><li>Fixture Installation &amp; Upgrades</li></ul><h2>Residential Plumbing Pricing in 14220</h2><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Drain Cleaning</td><td>$89</td></tr><tr><td>Water Heater Installation</td><td>$899</td></tr><tr><td>Emergency Service</td><td>$129</td></tr></table><p>As longtime South Buffalo plumbers, we understand the specific challenges faced by homeowners in the 14220 area, including older plumbing systems in heritage homes and seasonal weather-related issues. Our expertise with local building codes and infrastructure ensures efficient, compliant service every time.</p>",
+  "whyHeading": "Why Choose Us in South Buffalo?",
+  "whyItems": [
+    {
+      "title": "Deep familiarity with South Buffalo's historic home plumbing systems, particularly in the Seneca-Babcock and Lovejoy neighborhoods",
+      "text": "Trusted by South Buffalo residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Dedicated emergency response team based in 14220 for faster service times",
+      "text": "Trusted by South Buffalo residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Local knowledge of South Buffalo's water supply system and common neighborhood plumbing challenges",
+      "text": "Trusted by South Buffalo residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Strong relationships with local suppliers and building inspectors for streamlined project completion",
+      "text": "Trusted by South Buffalo residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in South Buffalo",
+    "text": "We proudly serve all of South Buffalo (14220) and surrounding areas including Lackawanna, West Seneca, Kaisertown, Old First Ward, The Valley, and Larkinville. Our service area extends to Hamburg, Blasdell, and East Aurora for comprehensive residential plumbing needs."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving South Buffalo with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "South Buffalo Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14220"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in South Buffalo",
+  "mapSubheading": "Local Residential Plumbing Services services in South Buffalo and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving South Buffalo, Buffalo",
+    "zipLine": "Zip Code: 14220",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "elmwood-village-14222",
+        "name": "Elmwood Village"
+      },
+      {
+        "slug": "north-buffalo-14216",
+        "name": "North Buffalo"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}

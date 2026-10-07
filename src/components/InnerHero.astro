@@ -1,0 +1,65 @@
+---
+import Photo from './Photo.astro';
+import Brand from './Brand.astro';
+import Breadcrumbs, { type Crumb } from './Breadcrumbs.astro';
+import CallButton from './CallButton.astro';
+import Icon from './Icon.astro';
+import type { PhotoName } from '../lib/media';
+
+interface Props {
+  crumbs: Crumb[];
+  h1: string;
+  text: string;
+  buttonLabel: string;
+  photo: PhotoName;
+  photoPosition?: string;
+  /** small facts shown as pills under the buttons (e.g. zip code) */
+  chips?: { icon: string; label: string }[];
+  secondary?: { href: string; label: string };
+}
+const { crumbs, h1, text, buttonLabel, photo, photoPosition, chips = [], secondary } = Astro.props;
+---
+
+<section class="relative isolate overflow-hidden bg-navy-950 text-white">
+  <Photo name="bg-header" alt="" sizes="100vw" widths={[768, 1376]} class="absolute inset-0 -z-20 h-full w-full object-cover opacity-50" />
+  <div class="absolute inset-0 -z-10 bg-gradient-to-r from-navy-950 via-navy-950/92 to-navy-900/55"></div>
+  <div class="absolute inset-x-0 bottom-0 -z-10 h-1.5 bg-gradient-to-r from-amber-500 via-amber-400 to-brand-600"></div>
+
+  <div class="container-x grid items-center gap-10 py-10 lg:grid-cols-12 lg:gap-14 lg:py-16">
+    <div class="lg:col-span-7">
+      <Breadcrumbs items={crumbs} light />
+      <h1 class="hero-fade-in mt-6 text-[clamp(2.3rem,5.2vw,4.1rem)] leading-[1.02] !text-white">{h1}</h1>
+      <p class="hero-fade-in d1 mt-5 max-w-2xl text-lg text-white/85 md:text-xl">{text}</p>
+      <div class="hero-fade-in d2 mt-8 flex flex-wrap items-center gap-3">
+        <CallButton label={buttonLabel} size="lg" location="inner-hero" />
+        {
+          secondary && (
+            <a href={secondary.href} class="btn btn-outline-light text-lg">
+              {secondary.label}
+              <Icon name="arrow-right" size={20} />
+            </a>
+          )
+        }
+      </div>
+      {
+        chips.length > 0 && (
+          <ul class="hero-fade-in d3 mt-7 flex flex-wrap gap-2.5">
+            {chips.map((c) => (
+              <li class="pill bg-white/10 text-white ring-1 ring-white/20">
+                <Icon name={c.icon} size={16} class="text-amber-400" />
+                {c.label}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+
+    <div class="relative hidden lg:col-span-5 lg:block">
+      <div class="hero-fade-in d1 overflow-hidden rounded-3xl shadow-2xl ring-1 ring-white/15">
+        <Photo name={photo} sizes="(min-width: 1024px) 40vw, 100vw" widths={[480, 768, 1024]} priority class="aspect-[4/3] w-full object-cover" position={photoPosition} />
+      </div>
+      <Brand name="badge-emergency" alt="24/7 emergency plumbing service badge" width={128} class="absolute -bottom-7 -left-7 h-auto w-32 drop-shadow-2xl" />
+    </div>
+  </div>
+</section>

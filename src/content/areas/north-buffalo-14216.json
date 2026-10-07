@@ -1,0 +1,89 @@
+{
+  "name": "North Buffalo",
+  "zip": "14216",
+  "title": "Residential Plumbing Services in North Buffalo near me 14216 - Drain Cleaning, Water Heaters, Leak Repair, Emergency Plumbing",
+  "description": "Expert residential plumbing services in North Buffalo 14216. 24/7 emergency plumber near me. Local, licensed & insured. Call Buffalo Plumbing PROS: (716) 610-1160",
+  "h1": "Trusted Residential Plumbing Services in North Buffalo, NY",
+  "heroText": "Expert residential plumbing services in North Buffalo 14216. 24/7 emergency plumber near me. Local, licensed & insured. Call Buffalo Plumbing PROS: (716) 610-1160",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS delivers expert residential plumbing services throughout North Buffalo's 14216 area, serving the diverse neighborhoods from Hertel Avenue to Parkside. Our local team understands the unique plumbing challenges faced by North Buffalo's historic homes and newer developments.</p><h2>Comprehensive Plumbing Solutions for North Buffalo Homes</h2><p>We specialize in addressing the specific plumbing needs of North Buffalo's housing stock, from classic Victorian homes to modern apartments. Our services include:</p><ul><li>Emergency leak detection and repair</li><li>Water heater installation and maintenance</li><li>Drain cleaning and sewer line services</li><li>Pipe replacement and winterization</li></ul><h3>Residential Plumbing Pricing in 14216</h3><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Drain Cleaning</td><td>$99</td></tr><tr><td>Water Heater Installation</td><td>$999</td></tr><tr><td>Emergency Service Call</td><td>$129</td></tr></table>",
+  "whyHeading": "Why Choose Us in North Buffalo?",
+  "whyItems": [
+    {
+      "title": "Dedicated North Buffalo team familiar with local building codes and regulations",
+      "text": "Trusted by North Buffalo residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "24/7 emergency response within 30 minutes to all 14216 addresses",
+      "text": "Trusted by North Buffalo residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Specialized experience with historic home plumbing systems common in North Buffalo",
+      "text": "Trusted by North Buffalo residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Local warehouse on Hertel Avenue for quick parts availability",
+      "text": "Trusted by North Buffalo residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in North Buffalo",
+    "text": "We proudly serve North Buffalo (14216) and surrounding areas including Parkside, Hertel-North Park, University Heights, Central Park, and Delaware District. Our service radius extends to nearby neighborhoods in 14214, 14215, and 14217."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving North Buffalo with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "North Buffalo Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14216"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in North Buffalo",
+  "mapSubheading": "Local Residential Plumbing Services services in North Buffalo and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving North Buffalo, Buffalo",
+    "zipLine": "Zip Code: 14216",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "elmwood-village-14222",
+        "name": "Elmwood Village"
+      },
+      {
+        "slug": "university-heights-14214",
+        "name": "University Heights"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}

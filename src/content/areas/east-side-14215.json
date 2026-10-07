@@ -1,0 +1,89 @@
+{
+  "name": "East Side",
+  "zip": "14215",
+  "title": "Residential Plumbing Services in East Side Buffalo 14215 - Emergency Repairs, Water Heaters, Drain Cleaning, Leak Detection",
+  "description": "Expert residential plumbing services in East Side Buffalo 14215. 24/7 emergency repairs, fair pricing. Local plumbers near you. Call (716) 610-1160 for same-day service.",
+  "h1": "Professional Residential Plumbing Services in East Side Buffalo",
+  "heroText": "Expert residential plumbing services in East Side Buffalo 14215. 24/7 emergency repairs, fair pricing. Local plumbers near you. Call (716) 610-1160 for same-day service.",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS provides comprehensive residential plumbing services throughout East Side's 14215 area. Our local team understands the unique challenges faced by homeowners in this historic neighborhood, from aging pipes in classic Craftsman homes to modern plumbing installations in newly renovated properties.</p><h2>Expert Residential Plumbing Solutions</h2><ul><li>24/7 Emergency Plumbing Repairs</li><li>Water Heater Installation &amp; Repair</li><li>Drain Cleaning &amp; Camera Inspection</li><li>Pipe Repair &amp; Replacement</li><li>Fixture Installation &amp; Upgrades</li></ul><h2>Transparent Pricing Guide</h2><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Drain Cleaning</td><td>$89</td></tr><tr><td>Water Heater Installation</td><td>$999</td></tr><tr><td>Emergency Service Call</td><td>$129</td></tr></table><p>As East Side's trusted plumbing partner, we're intimately familiar with the plumbing systems typical to homes near Bailey Avenue, Genesee Street, and throughout the 14215 zip code. Our experience with both historic and contemporary plumbing systems makes us the go-to choice for area residents.</p>",
+  "whyHeading": "Why Choose Us in East Side?",
+  "whyItems": [
+    {
+      "title": "Dedicated East Side plumbing team with over 20 years of experience in 14215 area homes",
+      "text": "Trusted by East Side residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Specialized knowledge of historic East Side property plumbing systems and requirements",
+      "text": "Trusted by East Side residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Same-day service availability for all East Side residents",
+      "text": "Trusted by East Side residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Bilingual plumbers to better serve our diverse East Side community",
+      "text": "Trusted by East Side residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in East Side",
+    "text": "We proudly serve all of East Side Buffalo (14215) including Bailey-Delavan, Genesee-Moselle, Schiller Park, and surrounding areas. Our service area extends to adjacent neighborhoods including Broadway-Fillmore, Lovejoy, and Kaisertown. We also cover nearby zip codes 14211, 14212, and 14206."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving East Side with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "East Side Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14215"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in East Side",
+  "mapSubheading": "Local Residential Plumbing Services services in East Side and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving East Side, Buffalo",
+    "zipLine": "Zip Code: 14215",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "elmwood-village-14222",
+        "name": "Elmwood Village"
+      },
+      {
+        "slug": "north-buffalo-14216",
+        "name": "North Buffalo"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}

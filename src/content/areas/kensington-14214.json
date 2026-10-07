@@ -1,0 +1,89 @@
+{
+  "name": "Kensington",
+  "zip": "14214",
+  "title": "Residential Plumbing Services in Kensington near me 14214 - Emergency Repairs, Water Heaters, Drain Cleaning, Leak Detection, Sewer Line Service",
+  "description": "Expert residential plumbing services in Kensington Buffalo 14214. 24/7 emergency repairs, competitive rates. Local plumbers near you! Call (716) 610-1160 today.",
+  "h1": "Professional Residential Plumbing Services in Kensington, Buffalo 14214",
+  "heroText": "Expert residential plumbing services in Kensington Buffalo 14214. 24/7 emergency repairs, competitive rates. Local plumbers near you! Call (716) 610-1160 today.",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS delivers comprehensive residential plumbing solutions throughout Kensington's 14214 neighborhood. Our experienced team understands the unique plumbing challenges faced by homeowners in this historic Buffalo community, from vintage home repairs to modern plumbing installations.</p><h2>Expert Plumbing Services in Kensington</h2><ul><li>24/7 Emergency Plumbing Repairs</li><li>Water Heater Installation &amp; Maintenance</li><li>Drain Cleaning &amp; Camera Inspection</li><li>Pipe Repair &amp; Replacement</li><li>Bathroom &amp; Kitchen Remodeling</li></ul><h2>Kensington Plumbing Service Pricing</h2><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Emergency Service Call</td><td>$89</td></tr><tr><td>Drain Cleaning</td><td>$149</td></tr><tr><td>Water Heater Installation</td><td>$999</td></tr></table><p>As your neighborhood plumbing experts, we're intimately familiar with the plumbing systems common in Kensington's mix of pre-war and post-war homes. Our team specializes in addressing the specific needs of properties in the 14214 area, including the maintenance of older galvanized pipes and installation of modern PEX plumbing systems.</p>",
+  "whyHeading": "Why Choose Us in Kensington?",
+  "whyItems": [
+    {
+      "title": "Dedicated Kensington service team with extensive experience working on local home plumbing systems",
+      "text": "Trusted by Kensington residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Fastest response times in 14214 - usually within 30 minutes for emergencies",
+      "text": "Trusted by Kensington residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Deep understanding of Kensington's historic home plumbing infrastructure",
+      "text": "Trusted by Kensington residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Special discounts for Kensington neighborhood residents and senior citizens",
+      "text": "Trusted by Kensington residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in Kensington",
+    "text": "We proudly serve Kensington and surrounding neighborhoods including University Heights, Bailey-Lovejoy, Eggertsville, and Kenmore. Our service area covers all of 14214 and extends to nearby zip codes 14215, 14216, and 14226. We're centrally located to quickly reach any emergency in the Kensington area."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving Kensington with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "Kensington Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14214"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in Kensington",
+  "mapSubheading": "Local Residential Plumbing Services services in Kensington and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving Kensington, Buffalo",
+    "zipLine": "Zip Code: 14214",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "elmwood-village-14222",
+        "name": "Elmwood Village"
+      },
+      {
+        "slug": "north-buffalo-14216",
+        "name": "North Buffalo"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}

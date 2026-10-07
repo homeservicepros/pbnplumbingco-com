@@ -1,0 +1,31 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  faqs: { q: string; a: string }[];
+  /** open the first item by default */
+  openFirst?: boolean;
+}
+const { faqs, openFirst = true } = Astro.props;
+---
+
+<div class="space-y-4">
+  {
+    faqs.map((f, i) => (
+      <details class="faq card overflow-hidden transition" open={openFirst && i === 0}>
+        <summary class="flex items-start justify-between gap-4 p-5 sm:p-6">
+          <h3 class="flex items-start gap-3 text-xl leading-snug sm:text-2xl">
+            <Icon name="circle-help" size={26} class="mt-0.5 shrink-0 text-brand-600" />
+            <span>{f.q}</span>
+          </h3>
+          <span class="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-brand-50 text-brand-700">
+            <Icon name="chevron-down" size={18} class="faq-chevron transition" />
+          </span>
+        </summary>
+        <div class="border-t border-line px-5 pb-6 pt-4 text-lg text-muted sm:px-6 sm:pl-[3.9rem]">
+          <p>{f.a}</p>
+        </div>
+      </details>
+    ))
+  }
+</div>

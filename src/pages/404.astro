@@ -1,0 +1,32 @@
+---
+import Base from '../layouts/Base.astro';
+import CallButton from '../components/CallButton.astro';
+import Icon from '../components/Icon.astro';
+import { serviceLinks } from '../lib/content';
+---
+
+<Base title="Page not found | Buffalo Plumbing PROS" description="The page you were looking for could not be found. Call Buffalo Plumbing PROS for 24/7 plumbing help." path="/404" noindex>
+  <section class="section bg-mist">
+    <div class="container-x max-w-3xl text-center">
+      <p class="font-display text-8xl font-bold text-brand-600">404</p>
+      <h1 class="mt-2 text-4xl md:text-5xl">This pipe leads nowhere.</h1>
+      <p class="mt-4 text-lg text-muted">The page you were looking for has moved or doesn’t exist. Try one of these instead, or call us — we’re available 24/7.</p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <a href="/" class="btn btn-navy">Back to home</a>
+        <a href="/blog/" class="btn btn-outline">Read the blog</a>
+        <CallButton location="404" />
+      </div>
+      <ul class="mt-12 grid gap-2 text-left sm:grid-cols-2">
+        {
+          serviceLinks.slice(0, 8).map((s) => (
+            <li>
+              <a href={s.href} class="flex items-center gap-2 rounded-lg px-3 py-2 font-semibold text-navy-900 hover:bg-white hover:text-brand-700">
+                <Icon name="arrow-right" size={16} class="text-amber-600" />{s.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>

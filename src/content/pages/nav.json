@@ -1,0 +1,138 @@
+{
+  "services": [
+    {
+      "slug": "plumbing-repair-buffalo-ny",
+      "name": "Plumbing Repair Buffalo NY"
+    },
+    {
+      "slug": "drain-repair-buffalo-ny",
+      "name": "Drain Repair Buffalo NY"
+    },
+    {
+      "slug": "toilet-repair-buffalo-ny",
+      "name": "Toilet Repair Buffalo NY"
+    },
+    {
+      "slug": "shower-repair-buffalo-ny",
+      "name": "Shower Repair Buffalo NY"
+    },
+    {
+      "slug": "faucet-repair-buffalo-ny",
+      "name": "Faucet Repair Buffalo NY"
+    },
+    {
+      "slug": "water-heater-repair-buffalo-ny",
+      "name": "Water Heater Repair Buffalo NY"
+    },
+    {
+      "slug": "sewer-repair-buffalo-ny",
+      "name": "Sewer Repair Buffalo NY"
+    },
+    {
+      "slug": "water-pipe-repair-buffalo-ny",
+      "name": "Water Pipe Repair Buffalo NY"
+    },
+    {
+      "slug": "water-heater-installation-buffalo-ny",
+      "name": "Water Heater Installation Buffalo NY"
+    },
+    {
+      "slug": "toilet-installation-buffalo-ny",
+      "name": "Toilet Installation Buffalo NY"
+    },
+    {
+      "slug": "sink-installation-buffalo-ny",
+      "name": "Sink Installation Buffalo NY"
+    },
+    {
+      "slug": "bathtub-installation-buffalo-ny",
+      "name": "Bathtub Installation Buffalo NY"
+    },
+    {
+      "slug": "shower-installation-buffalo-ny",
+      "name": "Shower Installation Buffalo NY"
+    },
+    {
+      "slug": "faucet-installation-buffalo-ny",
+      "name": "Faucet Installation Buffalo NY"
+    },
+    {
+      "slug": "drain-installation-buffalo-ny",
+      "name": "Drain Installation Buffalo NY"
+    },
+    {
+      "slug": "sewer-installation-buffalo-ny",
+      "name": "Sewer Installation Buffalo NY"
+    },
+    {
+      "slug": "plumbing-installation-or-replacement-buffalo-ny",
+      "name": "Plumbing Installation or Replacement Buffalo NY"
+    },
+    {
+      "slug": "water-purification-system-installation-buffalo-ny",
+      "name": "Water Purification System Installation Buffalo NY"
+    }
+  ],
+  "areas": [
+    {
+      "slug": "downtown-14202",
+      "name": "Downtown"
+    },
+    {
+      "slug": "allentown-14201",
+      "name": "Allentown"
+    },
+    {
+      "slug": "elmwood-village-14222",
+      "name": "Elmwood Village"
+    },
+    {
+      "slug": "north-buffalo-14216",
+      "name": "North Buffalo"
+    },
+    {
+      "slug": "university-heights-14214",
+      "name": "University Heights"
+    },
+    {
+      "slug": "parkside-14214",
+      "name": "Parkside"
+    },
+    {
+      "slug": "kensington-14214",
+      "name": "Kensington"
+    },
+    {
+      "slug": "delaware-district-14202",
+      "name": "Delaware District"
+    },
+    {
+      "slug": "west-side-14213",
+      "name": "West Side"
+    },
+    {
+      "slug": "east-side-14215",
+      "name": "East Side"
+    },
+    {
+      "slug": "lovejoy-14206",
+      "name": "Lovejoy"
+    },
+    {
+      "slug": "riverside-14207",
+      "name": "Riverside"
+    },
+    {
+      "slug": "south-buffalo-14220",
+      "name": "South Buffalo"
+    },
+    {
+      "slug": "broadway-fillmore-14212",
+      "name": "Broadway Fillmore"
+    },
+    {
+      "slug": "black-rock-14207",
+      "name": "Black Rock"
+    }
+  ]
+}

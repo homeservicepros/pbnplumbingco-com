@@ -1,0 +1,29 @@
+---
+/** Brand imagery from /src/assets/brand (transparent PNG → AVIF/WebP at build). */
+import { Picture } from 'astro:assets';
+import { brand, type BrandName } from '../lib/media';
+
+interface Props {
+  name: BrandName;
+  alt: string;
+  /** Rendered CSS width in px (used for srcset + sizes). */
+  width: number;
+  class?: string;
+  priority?: boolean;
+}
+const { name, alt, width, class: className, priority = false } = Astro.props;
+const src = brand(name);
+const widths = [width, width * 2].filter((w) => w <= src.width);
+if (!widths.length) widths.push(src.width);
+---
+
+<Picture
+  src={src}
+  alt={alt}
+  widths={widths}
+  sizes={`${width}px`}
+  formats={['avif', 'webp']}
+  fallbackFormat="png"
+  priority={priority}
+  class={className}
+/>

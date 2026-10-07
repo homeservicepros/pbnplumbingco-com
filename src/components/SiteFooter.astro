@@ -1,0 +1,111 @@
+---
+import Icon from './Icon.astro';
+import Brand from './Brand.astro';
+import Photo from './Photo.astro';
+import CallButton from './CallButton.astro';
+import { SITE, mailHref, telHref } from '../config/site';
+import { serviceLinks, getAreaLinks, GROUP_LABEL, type ServiceGroup } from '../lib/content';
+
+interface Props {
+  /** The legacy homepage footer showed a rating line; it is preserved there only. */
+  showRating?: boolean;
+}
+const { showRating = false } = Astro.props;
+const areas = await getAreaLinks();
+const groups: ServiceGroup[] = ['repair', 'installation'];
+const year = new Date().getFullYear();
+const link = 'text-white/70 transition hover:text-amber-400';
+---
+
+<footer class="relative isolate overflow-hidden bg-navy-950 text-white">
+  <Photo name="bg-footer" alt="" sizes="100vw" widths={[768, 1376]} class="absolute inset-0 -z-10 h-full w-full object-cover opacity-25" />
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-navy-950 via-navy-950/85 to-navy-950"></div>
+
+  <div class="container-x pt-16 pb-10">
+    <div class="grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <Brand name="logo-full-white" alt={SITE.name} width={240} class="h-auto w-60" />
+        <p class="mt-6 max-w-sm text-white/75">Professional Residential Plumbing Services services in Buffalo and surrounding areas.</p>
+        {
+          showRating && (
+            <p class="mt-4 flex items-center gap-3">
+              <span class="flex gap-0.5 text-amber-400" aria-hidden="true">
+                {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={18} class="[&_path]:fill-current" />)}
+              </span>
+              <span class="text-sm text-white/70">5.0 Rating</span>
+            </p>
+          )
+        }
+        <ul class="mt-6 space-y-3 text-white/80">
+          <li class="flex items-start gap-3">
+            <Icon name="map-pin" size={20} class="mt-0.5 shrink-0 text-amber-400" />
+            <address class="not-italic">{SITE.address.street}<br />{SITE.address.city}, {SITE.address.region} {SITE.address.postalCode}</address>
+          </li>
+          <li class="flex items-center gap-3">
+            <Icon name="phone" size={20} class="shrink-0 text-amber-400" />
+            <a href={telHref} class="font-semibold text-white hover:text-amber-400">{SITE.phone}</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <Icon name="mail" size={20} class="shrink-0 text-amber-400" />
+            <a href={mailHref} class="hover:text-amber-400">{SITE.email}</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <Icon name="clock" size={20} class="shrink-0 text-amber-400" />
+            <span>24/7 Emergency Service</span>
+          </li>
+        </ul>
+        <CallButton class="mt-7" location="footer" />
+      </div>
+
+      <div class="lg:col-span-4">
+        <p class="font-display text-2xl font-bold uppercase tracking-wide text-white">Our Services</p>
+        {
+          groups.map((g) => (
+            <div class="mt-4">
+              <p class="text-sm font-semibold uppercase tracking-widest text-amber-400">{GROUP_LABEL[g]}</p>
+              <ul class="mt-2 space-y-1.5">
+                {serviceLinks
+                  .filter((s) => s.group === g)
+                  .map((s) => (
+                    <li>
+                      <a href={s.href} class={link}>{s.name}</a>
+                    </li>
+                  ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="font-display text-2xl font-bold uppercase tracking-wide text-white">Service Areas</p>
+        <ul class="mt-4 space-y-1.5">
+          {areas.map((a) => (
+            <li>
+              <a href={a.href} class={link}>{a.name}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="lg:col-span-2">
+        <p class="font-display text-2xl font-bold uppercase tracking-wide text-white">Quick Links</p>
+        <ul class="mt-4 space-y-1.5">
+          <li><a href="/" class={link}>Home</a></li>
+          <li><a href="/#about" class={link}>About</a></li>
+          <li><a href="/#services" class={link}>Services</a></li>
+          <li><a href="/blog/" class={link}>Blog</a></li>
+          <li><a href="/#contact" class={link}>Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-14 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-8 text-center text-sm text-white/60 sm:flex-row sm:text-left">
+      <p>© {year} {SITE.name}. All rights reserved.</p>
+      <p class="flex items-center gap-4">
+        <span class="flex items-center gap-1.5"><Icon name="badge-check" size={16} class="text-amber-400" />Licensed &amp; Insured</span>
+        <span class="flex items-center gap-1.5"><Icon name="clock" size={16} class="text-amber-400" />24/7 Emergency Service</span>
+      </p>
+    </div>
+  </div>
+</footer>

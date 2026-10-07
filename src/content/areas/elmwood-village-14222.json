@@ -1,0 +1,89 @@
+{
+  "name": "Elmwood Village",
+  "zip": "14222",
+  "title": "Residential Plumbing Services in Elmwood Village near me 14222 - Emergency Repairs, Drain Cleaning, Water Heaters, Leak Detection",
+  "description": "Expert residential plumbing services in Elmwood Village 14222. 24/7 emergency repairs, drain cleaning & more. Local Buffalo plumbers near you! Call (716) 610-1160",
+  "h1": "Professional Residential Plumbing Services in Elmwood Village, Buffalo",
+  "heroText": "Expert residential plumbing services in Elmwood Village 14222. 24/7 emergency repairs, drain cleaning & more. Local Buffalo plumbers near you! Call (716) 610-1160",
+  "heroButton": "Call (716) 610-1160 Now",
+  "bodyHtml": "<p>Buffalo Plumbing PROS delivers comprehensive residential plumbing solutions throughout Elmwood Village and the 14222 area. Our expert team understands the unique plumbing challenges faced by the historic homes and apartments in this cherished Buffalo neighborhood.</p><p>From the charming Victorian-era houses along Auburn Avenue to the modern condos near Bidwell Parkway, we provide specialized plumbing services tailored to Elmwood Village's diverse architectural landscape. Our technicians are extensively trained in handling both vintage plumbing systems and contemporary installations.</p><h2>Our Elmwood Village Plumbing Services Include:</h2><ul><li>Emergency Plumbing Repairs</li><li>Water Heater Installation &amp; Maintenance</li><li>Drain Cleaning &amp; Camera Inspection</li><li>Pipe Repair &amp; Replacement</li><li>Fixture Installation &amp; Upgrades</li></ul><h3>Residential Plumbing Pricing in 14222:</h3><table><tr><th>Service</th><th>Starting Price</th></tr><tr><td>Drain Cleaning</td><td>$89</td></tr><tr><td>Water Heater Installation</td><td>$999</td></tr><tr><td>Emergency Service Call</td><td>$129</td></tr></table>",
+  "whyHeading": "Why Choose Us in Elmwood Village?",
+  "whyItems": [
+    {
+      "title": "Dedicated Elmwood Village plumbing team with extensive experience in historic home plumbing systems",
+      "text": "Trusted by Elmwood Village residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Fastest response times in 14222 - average arrival within 30 minutes for emergencies",
+      "text": "Trusted by Elmwood Village residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Deep understanding of local building codes and Elmwood Village Historic District requirements",
+      "text": "Trusted by Elmwood Village residents for reliable Residential Plumbing Services services."
+    },
+    {
+      "title": "Specialized equipment for dealing with older plumbing systems common in Elmwood Village homes",
+      "text": "Trusted by Elmwood Village residents for reliable Residential Plumbing Services services."
+    }
+  ],
+  "coverage": {
+    "heading": "Our Service Coverage in Elmwood Village",
+    "text": "We proudly serve all of Elmwood Village and surrounding areas including Delaware District, Allentown, Bryant, West Side, North Buffalo, and the entire 14222 zip code. Our service area extends to neighboring communities within 15 minutes of Elmwood Village, ensuring quick response times for all your plumbing needs."
+  },
+  "sidebarCta": {
+    "heading": "Local Residential Plumbing Services Experts",
+    "text": "Serving Elmwood Village with trusted, professional Residential Plumbing Services services!",
+    "button": "Call (716) 610-1160"
+  },
+  "infoHeading": "Elmwood Village Service Info",
+  "infoRows": [
+    {
+      "label": "Zip Code",
+      "value": "14222"
+    },
+    {
+      "label": "Response Time",
+      "value": "Same Day"
+    },
+    {
+      "label": "Emergency Service",
+      "value": "24/7 Available"
+    }
+  ],
+  "servicesHeading": "Our Residential Plumbing Services Services:",
+  "mapHeading": "Find Us in Elmwood Village",
+  "mapSubheading": "Local Residential Plumbing Services services in Elmwood Village and surrounding areas",
+  "mapContact": {
+    "heading": "Contact Information",
+    "businessName": "Buffalo Plumbing PROS",
+    "serving": "Serving Elmwood Village, Buffalo",
+    "zipLine": "Zip Code: 14222",
+    "hoursLabel": "Local Service Hours",
+    "hoursValue": "24/7 Emergency Available"
+  },
+  "nearby": {
+    "heading": "Nearby Areas We Serve",
+    "links": [
+      {
+        "slug": "downtown-14202",
+        "name": "Downtown"
+      },
+      {
+        "slug": "allentown-14201",
+        "name": "Allentown"
+      },
+      {
+        "slug": "north-buffalo-14216",
+        "name": "North Buffalo"
+      },
+      {
+        "slug": "university-heights-14214",
+        "name": "University Heights"
+      }
+    ],
+    "viewAll": {
+      "label": "View All Service Areas",
+      "href": "/"
+    }
+  }
+}
