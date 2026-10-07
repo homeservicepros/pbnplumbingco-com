@@ -82,3 +82,9 @@ export async function getPostsInLegacyOrder(): Promise<PostEntry[]> {
 }
 
 export const stripLocation = (name: string) => name.replace(/\s+Buffalo NY$/i, '');
+
+/** "2026-10-05" → "10/5/2026" (the m/d/yyyy format the legacy blog used). Pure string math: no timezone drift. */
+export const formatDate = (iso: string) => {
+  const [y, m, d] = iso.split('-').map(Number);
+  return `${m}/${d}/${y}`;
+};

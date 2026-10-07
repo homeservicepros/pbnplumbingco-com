@@ -71,7 +71,24 @@ REPLACEMENTS = [
     ("contact@pbmplumbingco.com", "info@buffaloplumbingpros.com"),
     ("pbmplumbingco.com", "buffaloplumbingpros.com"),
     ("14086", "14228"),  # business ZIP: 140 Irwin Pl, Buffalo, NY 14228
+    ("A Homeowners Guide (2024)", "A Homeowners Guide (2026)"),  # edition year in one post title / h1
 ]
+
+# The rebuilt site is treated as freshly published: every post gets a new publish date between
+# 2026-09-01 and 2026-10-05 (none later than 2026-10-05). Newest first = the legacy /blog/ order.
+# dateModified == datePublished. The visible "m/d/yyyy" is derived from these in the templates.
+POST_DATES = {
+    "top-plumbing-repair-services-in-buffalo-ny-a-homeowners-guide": "2026-10-05",
+    "emergency-plumber-buffalo-ny-247-services-you-can-count-on": "2026-10-02",
+    "common-toilet-repair-issues-and-solutions-in-buffalo-ny": "2026-09-29",
+    "shower-repair-tips-every-buffalo-homeowner-should-know": "2026-09-25",
+    "faucet-repair-made-easy-diy-guide-for-buffalo-residents": "2026-09-22",
+    "when-to-call-an-emergency-plumber-in-buffalo-ny-signs-to-watch-for": "2026-09-18",
+    "how-winter-weather-affects-your-plumbing-in-buffalo-ny": "2026-09-15",
+    "save-money-with-regular-drain-repair-maintenance-in-buffalo-ny": "2026-09-11",
+    "buffalo-ny-plumbing-emergencies-how-to-stay-prepared": "2026-09-08",
+    "the-ultimate-guide-to-choosing-the-best-residential-plumbing-services-in-buffalo": "2026-09-03",
+}
 
 
 def apply_replacements(obj):
@@ -255,7 +272,7 @@ def extract_post(path: Path) -> dict:
     h1 = must(txt(head.h1), "h1", path)
     byline = head.select_one("div.flex")
     spans = byline.find_all("span")
-    author, date_text = txt(spans[0]), txt(spans[1])
+    author = txt(spans[0])
     summary = txt(head.select_one("div.italic"))
     prose = must(art.select_one("div.prose"), "prose", path)
 
@@ -276,9 +293,8 @@ def extract_post(path: Path) -> dict:
         "keywords": meta(s, "keywords"),
         "h1": h1,
         "author": author,
-        "dateText": date_text,
-        "datePublished": blog_ld["datePublished"],
-        "dateModified": blog_ld.get("dateModified", blog_ld["datePublished"]),
+        "datePublished": POST_DATES[path.stem],
+        "dateModified": POST_DATES[path.stem],
         "summary": summary,
         "bodyHtml": inner_html(prose),
         "cta": {
@@ -302,7 +318,6 @@ def extract_blog_index(path: Path, posts: dict) -> dict:
             {
                 "slug": slug,
                 "title": txt(a),
-                "byline": txt(art.select_one("div.text-sm")),
                 "excerpt": txt(art.select_one("p")),
             }
         )

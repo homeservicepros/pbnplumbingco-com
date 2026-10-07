@@ -12,9 +12,12 @@ Checks (exit code 1 if any hard check fails):
   4. Link integrity  – every internal href / src in the new build resolves to a built file.
   5. SEO hygiene     – one <h1>, canonical on the new domain, valid JSON-LD, images have alt.
   6. Domain move     – no trace of the old domain anywhere in dist; every page links all state sub-domains.
+  7. Dates           – every publish/modified date, <time>, sitemap <lastmod> and visible date/year is within
+                       EARLIEST..LATEST below (the site is treated as freshly published; nothing after "today").
 
 Owner-approved differences from the legacy copy (applied to the legacy text before comparing):
   contact@pbmplumbingco.com → info@buffaloplumbingpros.com · pbmplumbingco.com → buffaloplumbingpros.com · ZIP 14086 → 14228
+  "Guide (2024)" → "Guide (2026)" · blog post dates (m/d/yyyy) are new, so legacy dates are ignored in the copy comparison
 """
 from __future__ import annotations
 
@@ -35,7 +38,10 @@ REPLACEMENTS = [
     ("contact@pbmplumbingco.com", "info@buffaloplumbingpros.com"),
     ("pbmplumbingco.com", "buffaloplumbingpros.com"),
     ("14086", "14228"),
+    ("A Homeowners Guide (2024)", "A Homeowners Guide (2026)"),
 ]
+# Rebuilt site = freshly published. Nothing earlier than EARLIEST, nothing on/after "today" (2026-10-06).
+EARLIEST, LATEST = "2026-09-01", "2026-10-05"
 STATE_CODES = (
     "al ak az ar ca co ct de dc fl ga hi id il in ia ks ky la me md ma mi mn ms mo mt ne nv nh nj nm ny nc nd oh ok or pa pr ri sc sd tn tx ut vt va wa wv wi wy"
 ).split()
@@ -136,6 +142,7 @@ def content_nodes(soup: BeautifulSoup) -> list[str]:
     out = []
     for s in body.find_all(string=True):
         t = norm(migrated(str(s)))
+        t = re.sub(r"\s*•?\s*\b\d{1,2}/\d{1,2}/\d{4}\b$", "", t)  # legacy post dates were replaced on purpose (check 7)
         if not t or not re.search(r"[A-Za-z0-9]", t):  # decorative glyphs/emoji/arrows
             continue
         t = re.sub(r"^[^\w\"'($]+", "", t)
@@ -269,6 +276,70 @@ if len(tiles) != len(STATE_CODES):
 print(f"[6] Domain move: old domain mentioned in {len(leaks)} dist files; all {len(STATE_CODES)} state sub-domain links present on "
       f"{len(dist_pages) - state_bad}/{len(dist_pages)} pages; homepage map has {len(tiles)} tiles → "
       f"{'OK' if not leaks and not state_bad and len(tiles) == len(STATE_CODES) else 'PROBLEMS'}")
+
+# ------------------------------------------------------------------ 7. dates
+found: list[tuple[str, str, str]] = []  # (where, kind, ISO date)
+
+
+def add_iso(where: str, kind: str, value: str) -> None:
+    m = re.match(r"(\d{4})-(\d{2})-(\d{2})", value or "")
+    if m:
+        found.append((where, kind, m.group(0)))
+    else:
+        fail(f"{where}: unparseable {kind} {value!r}")
+
+
+def walk_ld(where: str, node) -> None:
+    if isinstance(node, dict):
+        for k, v in node.items():
+            if k.startswith("date") and isinstance(v, str):
+                add_iso(where, f"JSON-LD {k}", v)
+            else:
+                walk_ld(where, v)
+    elif isinstance(node, list):
+        for x in node:
+            walk_ld(where, x)
+
+
+year_bad = 0
+for u, p in sorted(dist_pages.items()):
+    soup = load(p)
+    for b in soup.find_all("script", type="application/ld+json"):
+        walk_ld(u, json.loads(b.string))
+    for m in soup.find_all("meta", property=re.compile(r"^article:(published|modified)_time$")):
+        add_iso(u, m["property"], m["content"])
+    for t in soup.find_all("time", datetime=True):
+        add_iso(u, "<time>", t["datetime"])
+    text = visible_text(load(p))
+    for m in re.finditer(r"\b(\d{1,2})/(\d{1,2})/(\d{4})\b", text):
+        add_iso(u, "visible date", f"{m.group(3)}-{int(m.group(1)):02d}-{int(m.group(2)):02d}")
+    for m in re.finditer(r"(?<![\$\d,.\-/])\b((?:19|20)\d{2})\b(?![\d/,-])", text):
+        year, before = m.group(1), text[max(0, m.start() - 7) : m.start()].lower()
+        if year == "2026" or before.endswith("since "):  # © year, or a "since 2005" history claim
+            continue
+        year_bad += 1
+        fail(f"{u}: stray year {year} in visible text: …{text[max(0, m.start() - 40) : m.end() + 20]}…")
+for name in ("sitemap.xml", "sitemap-index.xml"):
+    for d in re.findall(r"<lastmod>([^<]+)</lastmod>", (DIST / name).read_text(encoding="utf8")):
+        add_iso(name, "<lastmod>", d)
+
+out_of_window = [(w, k, d) for w, k, d in found if not (EARLIEST <= d <= LATEST)]
+for w, k, d in out_of_window[:15]:
+    fail(f"date outside {EARLIEST}..{LATEST}: {d} ({k}) on {w}")
+# every post: modified >= published, and the 10 posts carry 10 distinct publish dates
+posts = {}
+for u, p in dist_pages.items():
+    if u.startswith("/blog/") and u != "/blog/":
+        ld = [n for b in load(p).find_all("script", type="application/ld+json") for n in json.loads(b.string)["@graph"] if n.get("@type") == "BlogPosting"]
+        posts[u] = (ld[0]["datePublished"], ld[0]["dateModified"])
+        if ld[0]["dateModified"] < ld[0]["datePublished"]:
+            fail(f"{u}: dateModified before datePublished")
+if len({d for d, _ in posts.values()}) != len(posts):
+    fail("blog posts share a publish date")
+dates = sorted(d for _, _, d in found)
+print(f"[7] Dates: {len(found)} dates checked on {len(dist_pages)} pages + sitemaps; earliest {dates[0]}, latest {dates[-1]} "
+      f"(window {EARLIEST}..{LATEST}); {len(posts)} posts with distinct publish dates; stray years: {year_bad} → "
+      f"{'OK' if not out_of_window and not year_bad else 'PROBLEMS'}")
 
 # ------------------------------------------------------------------ result
 print()

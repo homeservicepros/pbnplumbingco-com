@@ -76,7 +76,6 @@ const blog = defineCollection({
     keywords: z.string().nullable(),
     h1: z.string(),
     author: z.string(),
-    dateText: z.string(),
     datePublished: z.string(),
     dateModified: z.string(),
     summary: z.string(),

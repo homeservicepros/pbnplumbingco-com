@@ -102,6 +102,18 @@ npm run photo -- van-1 ~/Downloads/real-van.jpg # resizes → WebP and replaces 
 Then update that photo's description in `PHOTO_ALT` (`src/lib/media.ts`) so the alt text matches, and rebuild. Which photo each
 service/neighbourhood page uses is also set in `src/lib/media.ts`.
 
+## Dates
+
+The rebuilt site is treated as freshly published, so every date is between **2026-09-01 and 2026-10-05** (none later than today).
+
+* Blog posts: `datePublished` / `dateModified` in `src/content/blog/<slug>.json` (ISO `YYYY-MM-DD`). The visible `m/d/yyyy` on posts and on
+  the blog index, the `<time>` tags, `article:published_time` and the `BlogPosting` JSON-LD are all derived from it. The ten posts have
+  ten distinct dates, newest first in the blog-index order (`POST_DATES` in `scripts/extract_legacy_content.py` records how they were set).
+* Everything else (sitemap `<lastmod>`, page-level `dateModified`): `SITE.lastModified` in `src/config/site.ts` — keep it on or before today.
+* "(2024)" in one post title became "(2026)". The business-history claims "since 2005" / "since 2010" are not publish dates and were left.
+* `npm run verify` check 7 fails the run if any date, `<time>`, `<lastmod>`, or stray visible year falls outside the window
+  (`EARLIEST`/`LATEST` at the top of `scripts/verify_parity.py`; move `LATEST` forward when you publish new posts).
+
 ## Verifying a build against the legacy site
 
 ```
@@ -112,11 +124,11 @@ npm run verify -- /tmp/legacy dist        # python3 -I scripts/verify_parity.py 
 
 Checks: identical URL set (+ sitemap lists all 45) · identical `<title>` and meta description on every page · every text node of
 every legacy page's content present verbatim · every internal link/asset resolves · one `<h1>`, canonical on the new domain,
-valid JSON-LD, alt text and og:image on every page · no trace of the old domain · all 52 state links on every page.
+valid JSON-LD, alt text and og:image on every page · no trace of the old domain · all 52 state links on every page · every date inside the window above.
 
 The only intentional differences from the legacy copy (applied by the extractor and mirrored in the verifier):
 `contact@pbmplumbingco.com` → `info@buffaloplumbingpros.com`, `pbmplumbingco.com` → `buffaloplumbingpros.com`, and the business ZIP
-`14086` → `14228` (new address: 140 Irwin Pl, Buffalo, NY 14228) in titles, descriptions and body copy.
+`14086` → `14228` (new address: 140 Irwin Pl, Buffalo, NY 14228) in titles, descriptions and body copy, and the new publish dates described above.
 
 ## SEO / AI-search foundations included
 

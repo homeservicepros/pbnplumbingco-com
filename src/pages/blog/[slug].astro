@@ -9,7 +9,7 @@ import Photo from '../../components/Photo.astro';
 import Brand from '../../components/Brand.astro';
 import Icon from '../../components/Icon.astro';
 import { absoluteUrl } from '../../config/site';
-import { getPosts, getAreaLinks, serviceLinks, postHref } from '../../lib/content';
+import { getPosts, getAreaLinks, serviceLinks, postHref, formatDate } from '../../lib/content';
 import { blogPhoto } from '../../lib/media';
 import { enhanceProse } from '../../lib/prose';
 import { graph, businessNode, websiteNode, webPageNode, breadcrumbNode, blogPostingNode } from '../../lib/schema';
@@ -71,7 +71,7 @@ const jsonLd = [
       <h1 class="hero-fade-in mt-6 max-w-4xl text-[clamp(2.1rem,4.6vw,3.6rem)] leading-[1.04] !text-white">{d.h1}</h1>
       <p class="hero-fade-in d1 mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-white/80">
         <span class="flex items-center gap-2"><Icon name="user-round" size={18} class="text-amber-400" />{d.author}</span>
-        <span class="flex items-center gap-2"><Icon name="calendar" size={18} class="text-amber-400" /><time datetime={d.datePublished}>{d.dateText}</time></span>
+        <span class="flex items-center gap-2"><Icon name="calendar" size={18} class="text-amber-400" /><time datetime={d.datePublished}>{formatDate(d.datePublished)}</time></span>
       </p>
     </div>
   </section>

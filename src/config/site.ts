@@ -35,8 +35,8 @@ export const SITE = {
   /** GA4 Measurement ID — see GA_MEASUREMENT_ID above. Only a well-formed `G-…` ID is ever emitted. */
   googleAnalyticsId: ((import.meta.env.PUBLIC_GA_MEASUREMENT_ID as string | undefined)?.trim() || GA_MEASUREMENT_ID).trim(),
   foundingYear: 2005,
-  /** Redesign date — used as sitemap <lastmod> for the migrated pages. */
-  lastModified: '2026-10-07',
+  /** Publish date of the rebuilt site — sitemap <lastmod> and page-level dateModified. Keep it on or before today. */
+  lastModified: '2026-10-05',
 } as const;
 
 export const telHref = `tel:${SITE.phoneE164}`;
