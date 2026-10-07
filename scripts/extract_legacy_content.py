@@ -70,6 +70,7 @@ def section_after_header(soup: BeautifulSoup):
 REPLACEMENTS = [
     ("contact@pbmplumbingco.com", "info@buffaloplumbingpros.com"),
     ("pbmplumbingco.com", "buffaloplumbingpros.com"),
+    ("(716) 610-1160", "(716) 663-0186"),  # new business phone number
     ("14086", "14228"),  # business ZIP: 140 Irwin Pl, Buffalo, NY 14228
     ("A Homeowners Guide (2024)", "A Homeowners Guide (2026)"),  # edition year in one post title / h1
 ]

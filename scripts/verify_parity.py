@@ -11,12 +11,14 @@ Checks (exit code 1 if any hard check fails):
   3. Copy parity     – every text node of legacy page *content* (chrome excluded) appears in the new page.
   4. Link integrity  – every internal href / src in the new build resolves to a built file.
   5. SEO hygiene     – one <h1>, canonical on the new domain, valid JSON-LD, images have alt.
-  6. Domain move     – no trace of the old domain anywhere in dist; every page links all state sub-domains.
+  6. Domain + phone  – no trace of the old domain or old phone number anywhere in dist; every tel: link and every JSON-LD
+                       telephone is the new number; every page links all state sub-domains.
   7. Dates           – every publish/modified date, <time>, sitemap <lastmod> and visible date/year is within
                        EARLIEST..LATEST below (the site is treated as freshly published; nothing after "today").
 
 Owner-approved differences from the legacy copy (applied to the legacy text before comparing):
   contact@pbmplumbingco.com → info@buffaloplumbingpros.com · pbmplumbingco.com → buffaloplumbingpros.com · ZIP 14086 → 14228
+  phone (716) 610-1160 → (716) 663-0186
   "Guide (2024)" → "Guide (2026)" · blog post dates (m/d/yyyy) are new, so legacy dates are ignored in the copy comparison
 """
 from __future__ import annotations
@@ -37,6 +39,7 @@ OLD_DOMAIN = "pbmplumbingco.com"
 REPLACEMENTS = [
     ("contact@pbmplumbingco.com", "info@buffaloplumbingpros.com"),
     ("pbmplumbingco.com", "buffaloplumbingpros.com"),
+    ("(716) 610-1160", "(716) 663-0186"),
     ("14086", "14228"),
     ("A Homeowners Guide (2024)", "A Homeowners Guide (2026)"),
 ]
@@ -255,13 +258,29 @@ for u, p in sorted(dist_pages.items()):
 print(f"[5] SEO hygiene on {len(dist_pages)} pages (1×h1, canonical, JSON-LD, alt, og:image) → {'OK' if not seo_bad else f'{seo_bad} issues'}")
 
 # ------------------------------------------------------------------ 6. domain move
+OLD_PHONE = re.compile(r"610[\s.\-)]*1160|7166101160")
+NEW_E164 = "+17166630186"
 leaks = []
 for f in DIST.rglob("*"):
     if f.is_file() and f.suffix in {".html", ".xml", ".txt", ".json", ".webmanifest", ".js", ".css"}:
-        if OLD_DOMAIN in f.read_text(encoding="utf8", errors="ignore"):
+        text = f.read_text(encoding="utf8", errors="ignore")
+        if OLD_DOMAIN in text:
             leaks.append(f.relative_to(DIST).as_posix())
-for f in leaks:
-    fail(f"old domain {OLD_DOMAIN} still referenced in dist/{f}")
+            fail(f"old domain {OLD_DOMAIN} still referenced in dist/{f.relative_to(DIST)}")
+        if OLD_PHONE.search(text):
+            leaks.append(f.relative_to(DIST).as_posix())
+            fail(f"old phone number still present in dist/{f.relative_to(DIST)}")
+tel_bad = 0
+for u, p in sorted(dist_pages.items()):
+    soup = load(p)
+    for a in soup.find_all("a", href=re.compile(r"^tel:")):
+        if a["href"] != f"tel:{NEW_E164}":
+            tel_bad += 1
+            fail(f"{u}: unexpected tel link {a['href']}")
+    ld = " ".join(b.string or "" for b in soup.find_all("script", type="application/ld+json"))
+    if NEW_E164 not in ld:
+        tel_bad += 1
+        fail(f"{u}: JSON-LD does not contain the new telephone")
 state_pat = re.compile(r"^https://([a-z]{2})\.buffaloplumbingpros\.com/$")
 state_bad = 0
 for u, p in sorted(dist_pages.items()):
@@ -273,9 +292,9 @@ home = load(dist_pages["/"])
 tiles = [a for a in home.select("#states ul[aria-label='Map of states we serve'] a")]
 if len(tiles) != len(STATE_CODES):
     fail(f"homepage tile map has {len(tiles)} tiles, expected {len(STATE_CODES)}")
-print(f"[6] Domain move: old domain mentioned in {len(leaks)} dist files; all {len(STATE_CODES)} state sub-domain links present on "
+print(f"[6] Domain + phone: old domain/phone found in {len(leaks)} dist files; tel/JSON-LD problems: {tel_bad}; all {len(STATE_CODES)} state links present on "
       f"{len(dist_pages) - state_bad}/{len(dist_pages)} pages; homepage map has {len(tiles)} tiles → "
-      f"{'OK' if not leaks and not state_bad and len(tiles) == len(STATE_CODES) else 'PROBLEMS'}")
+      f"{'OK' if not leaks and not tel_bad and not state_bad and len(tiles) == len(STATE_CODES) else 'PROBLEMS'}")
 
 # ------------------------------------------------------------------ 7. dates
 found: list[tuple[str, str, str]] = []  # (where, kind, ISO date)

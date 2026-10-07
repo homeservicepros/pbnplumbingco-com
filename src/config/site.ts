@@ -14,9 +14,9 @@ export const SITE = {
   /** Production origin. Canonical URLs, sitemap, JSON-LD and the state sub-domain links are built from this. */
   url: 'https://buffaloplumbingpros.com',
   tagline: 'Expert Residential Plumbing Services Solutions',
-  phone: '(716) 610-1160',
+  phone: '(716) 663-0186',
   /** E.164 form for tel: links. */
-  phoneE164: '+17166101160',
+  phoneE164: '+17166630186',
   email: 'info@buffaloplumbingpros.com',
   address: {
     street: '140 Irwin Pl',
