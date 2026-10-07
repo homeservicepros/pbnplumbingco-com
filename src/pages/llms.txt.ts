@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
-import { SITE, absoluteUrl } from '../config/site';
+import { SITE, absoluteUrl, fullAddress } from '../config/site';
+import { statesAlphabetical, stateUrl } from '../config/states';
 import { home, getServices, getAreas, getPosts, serviceHref, areaHref, postHref } from '../lib/content';
 
 /**
@@ -8,7 +9,6 @@ import { home, getServices, getAreas, getPosts, serviceHref, areaHref, postHref 
  */
 export const GET: APIRoute = async () => {
   const [services, areas, posts] = await Promise.all([getServices(), getAreas(), getPosts()]);
-  const a = SITE.address;
 
   const lines: string[] = [
     `# ${SITE.name}`,
@@ -20,7 +20,7 @@ export const GET: APIRoute = async () => {
     '## Business details',
     `- Phone: ${SITE.phone}`,
     `- Email: ${SITE.email}`,
-    `- Address: ${a.street}, ${a.city}, ${a.region} ${a.postalCode}`,
+    `- Address: ${fullAddress}`,
     `- Hours: ${SITE.hours.join(' · ')}`,
     `- Website: ${SITE.url}/`,
     '',
@@ -29,6 +29,9 @@ export const GET: APIRoute = async () => {
     '',
     '## Buffalo service areas',
     ...areas.map((s) => `- [${s.data.name} (${s.data.zip})](${absoluteUrl(areaHref(s.id))}): ${s.data.description}`),
+    '',
+    '## State sites (nationwide coverage)',
+    ...statesAlphabetical().map((s) => `- [${s.name}](${stateUrl(s.code)}): ${SITE.name} in ${s.name}`),
     '',
     '## Plumbing guides (blog)',
     `- [Blog index](${absoluteUrl('/blog/')}): Professional advice and tips from ${SITE.name}.`,

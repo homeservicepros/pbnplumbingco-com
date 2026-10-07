@@ -4,6 +4,7 @@ import Brand from './Brand.astro';
 import Photo from './Photo.astro';
 import CallButton from './CallButton.astro';
 import { SITE, mailHref, telHref } from '../config/site';
+import { statesAlphabetical, stateUrl } from '../config/states';
 import { serviceLinks, getAreaLinks, GROUP_LABEL, type ServiceGroup } from '../lib/content';
 
 interface Props {
@@ -14,6 +15,7 @@ const { showRating = false } = Astro.props;
 const areas = await getAreaLinks();
 const groups: ServiceGroup[] = ['repair', 'installation'];
 const year = new Date().getFullYear();
+const states = statesAlphabetical();
 const link = 'text-white/70 transition hover:text-amber-400';
 ---
 
@@ -100,7 +102,18 @@ const link = 'text-white/70 transition hover:text-amber-400';
       </div>
     </div>
 
-    <div class="mt-14 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-8 text-center text-sm text-white/60 sm:flex-row sm:text-left">
+    <div class="mt-14 border-t border-white/10 pt-10">
+      <p class="font-display text-2xl font-bold uppercase tracking-wide text-white">States We Serve</p>
+      <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-[0.95rem]" aria-label="States we serve">
+        {states.map((st) => (
+          <li>
+            <a href={stateUrl(st.code)} class={link} title={`Buffalo Plumbing PROS — ${st.name}`}>{st.name}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="mt-10 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-8 text-center text-sm text-white/60 sm:flex-row sm:text-left">
       <p>© {year} {SITE.name}. All rights reserved.</p>
       <p class="flex items-center gap-4">
         <span class="flex items-center gap-1.5"><Icon name="badge-check" size={16} class="text-amber-400" />Licensed &amp; Insured</span>

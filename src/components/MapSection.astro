@@ -2,19 +2,22 @@
 import Icon from './Icon.astro';
 import CallButton from './CallButton.astro';
 import SectionHeading from './SectionHeading.astro';
-import { SITE, telHref } from '../config/site';
+import MapEmbed from './MapEmbed.astro';
+import { SITE, telHref, buffaloMapSrc } from '../config/site';
 import { home } from '../lib/content';
 
 interface Props {
   heading: string;
   subheading: string;
   mapSrc?: string;
+  /** accessible name of the map iframe */
+  mapTitle?: string;
   /** background tone */
   tone?: 'white' | 'mist';
   /** page-specific contact card copy (area pages have their own); defaults to the homepage card */
   contact?: { heading: string; businessName: string; serving: string; zipLine?: string; hoursLabel: string; hoursValue: string };
 }
-const { heading, subheading, mapSrc = SITE.maps.buffalo, tone = 'white', contact } = Astro.props;
+const { heading, subheading, mapSrc = buffaloMapSrc, mapTitle = 'Map of Buffalo, NY service area', tone = 'white', contact } = Astro.props;
 const f = home.findUs;
 const c = contact ?? { heading: f.contactHeading, businessName: f.businessName, serving: f.serving, hoursLabel: f.hoursLabel, hoursValue: f.hoursValue };
 ---
@@ -24,14 +27,7 @@ const c = contact ?? { heading: f.contactHeading, businessName: f.businessName, 
     <SectionHeading kicker="Find us" title={heading} text={subheading} align="center" />
     <div class="mt-10 grid gap-8 lg:grid-cols-3">
       <div class="overflow-hidden rounded-2xl border border-line bg-white shadow-card lg:col-span-2">
-        <iframe
-          class="h-96 w-full lg:h-full lg:min-h-[26rem]"
-          title="Map of Buffalo, NY service area"
-          src={mapSrc}
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          allowfullscreen
-        ></iframe>
+        <MapEmbed src={mapSrc} title={mapTitle} class="h-96 w-full lg:h-full lg:min-h-[26rem]" />
       </div>
       <div class="space-y-6">
         <div class="card p-6 sm:p-8">

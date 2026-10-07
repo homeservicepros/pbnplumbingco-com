@@ -20,6 +20,7 @@ npm run check      # astro check (types)
 | Build command | `npm run build` |
 | Build output directory | `dist` |
 | Node | 22 (`.nvmrc` / `.node-version`; or set env `NODE_VERSION=22`) |
+| Env var (optional) | `PUBLIC_GA_MEASUREMENT_ID` = your GA4 ID (see *Analytics*) |
 
 Then add `buffaloplumbingpros.com` under **Custom domains**. The old-domain → new-domain redirect is configured in Cloudflare
 (Redirect Rules); this repo does not do it.
@@ -32,21 +33,22 @@ in `public/images/` so any image-search results still resolve.
 
 ```
 src/
-  config/site.ts          Business facts (name, phone, e-mail, address, hours, GA id, domain). Change here → changes everywhere.
+  config/site.ts          Business facts (name, phone, e-mail, address, hours, domain, GA id, map helpers). Change here → changes everywhere.
+  config/states.ts        All 50 states + D.C. + Puerto Rico → <code>.buffaloplumbingpros.com links, map tile positions
   content/                ALL page copy, as JSON, extracted verbatim from the legacy HTML (see "Content" below)
     services/ areas/ blog/   one JSON file per page, validated by schemas in src/content.config.ts
     pages/home.json, blog-index.json, nav.json
   pages/                  index, services/[slug], service-area/[slug], blog/index, blog/[slug], 404,
                           sitemap.xml, sitemap-index.xml, robots.txt, llms.txt
   layouts/Base.astro      <head> (canonical, OG/Twitter, JSON-LD, GA4), skip link, header, footer, mobile call bar
-  components/             Header (mega menus), Footer, InnerHero, Prose, FaqList, Process, MapSection, ServiceCard, …
+  components/             Header (mega menus), Footer, StatesSection (tile map + A–Z), InnerHero, Prose, FaqList, Process, MapSection/MapEmbed, ServiceCard, …
   lib/schema.ts           JSON-LD builders (Plumber, WebSite, WebPage, Service, FAQPage, BreadcrumbList, BlogPosting, Place)
   lib/media.ts            photo registry, accurate alt text, which photo suits which service page
   lib/prose.ts            adds heading ids + table wrappers to legacy body HTML (never changes wording)
   assets/photos|brand/    optimised sources (Astro builds AVIF/WebP + srcset at build time)
   styles/global.css       design tokens (navy / signal blue / amber), typography, prose styles
 public/                   favicons, OG image, _headers, site.webmanifest, legacy /images
-scripts/                  extract_legacy_content.py · prepare_media.py · verify_parity.py
+scripts/                  extract_legacy_content.py · prepare_media.py · swap_photo.py · verify_parity.py
 ```
 
 ### Content
@@ -62,6 +64,44 @@ logo variants (navy for light backgrounds, white for dark), cuts the trust badge
 favicons and `og-default.jpg`. The GBP-optimised (EXIF) JPG pack is for Google Business Profile uploads and is intentionally not used
 on the site. `Conversion Graphics/Overlay 2` (a mock "5-star verified customer" review card) is not used.
 
+## Analytics (Google Analytics 4)
+
+No analytics script is emitted until you add an ID — the old site's ID was removed on purpose. When you have the new GA4
+property: **Cloudflare Pages → Settings → Environment variables → Production → `PUBLIC_GA_MEASUREMENT_ID` = `G-XXXXXXXXXX`**,
+then redeploy. To change it later, edit that one variable. (Alternatively paste it into `GA_MEASUREMENT_ID` at the top of
+`src/config/site.ts`.) The tag is only added to production builds, never to `npm run dev`.
+
+## States We Serve (internal linking)
+
+`src/config/states.ts` lists all 50 states, D.C. and Puerto Rico (the legacy site already linked both). Each links to
+`https://<code>.buffaloplumbingpros.com/` (e.g. `https://ny.buffaloplumbingpros.com/`). They appear:
+
+* on the homepage — a tile-grid U.S. map (New York highlighted as HQ) plus an A–Z index (the only view on phones);
+* in the footer of **every** page — a sitewide "States We Serve" link block;
+* in `sitemap-index.xml` (each state's `/sitemap.xml`, like the legacy index), `llms.txt`, and as an `ItemList` in the homepage JSON-LD.
+
+The state sites themselves are separate projects; each must serve `/sitemap.xml` and be verified in Search Console for Google to
+accept the cross-host sitemap references.
+
+## Maps
+
+All maps are Google Maps `<iframe>` embeds, lazy-loaded, built by `src/components/MapEmbed.astro` (35 across the site):
+homepage business-address map (140 Irwin Pl) and U.S. map, every service page (Buffalo service area) and every neighbourhood page
+(centred on that neighbourhood + ZIP). They use the same keyless embed URL as the legacy site. To use Google's own
+*Share → Embed a map* iframe for the business pin, paste its `src` URL into `MAPS.businessEmbedSrc` in `src/config/site.ts`.
+
+## Replacing the placeholder photos
+
+All photography lives in `src/assets/photos/` (one file per slot). When you have real photos:
+
+```
+npm run photo -- --list                         # every slot, its size, and where it is used
+npm run photo -- van-1 ~/Downloads/real-van.jpg # resizes → WebP and replaces the slot
+```
+
+Then update that photo's description in `PHOTO_ALT` (`src/lib/media.ts`) so the alt text matches, and rebuild. Which photo each
+service/neighbourhood page uses is also set in `src/lib/media.ts`.
+
 ## Verifying a build against the legacy site
 
 ```
@@ -72,7 +112,11 @@ npm run verify -- /tmp/legacy dist        # python3 -I scripts/verify_parity.py 
 
 Checks: identical URL set (+ sitemap lists all 45) · identical `<title>` and meta description on every page · every text node of
 every legacy page's content present verbatim · every internal link/asset resolves · one `<h1>`, canonical on the new domain,
-valid JSON-LD, alt text and og:image on every page.
+valid JSON-LD, alt text and og:image on every page · no trace of the old domain · all 52 state links on every page.
+
+The only intentional differences from the legacy copy (applied by the extractor and mirrored in the verifier):
+`contact@pbmplumbingco.com` → `info@buffaloplumbingpros.com`, `pbmplumbingco.com` → `buffaloplumbingpros.com`, and the business ZIP
+`14086` → `14228` (new address: 140 Irwin Pl, Buffalo, NY 14228) in titles, descriptions and body copy.
 
 ## SEO / AI-search foundations included
 
@@ -88,9 +132,6 @@ valid JSON-LD, alt text and og:image on every page.
 
 The brief was "no content changes", so these were carried over exactly. They are flagged here so they get a conscious decision:
 
-* Contact e-mail is still `contact@pbmplumbingco.com` (old domain) — set `SITE.email` in `src/config/site.ts`.
-* The homepage "States We Serve" grid links to `*.pbmplumbingco.com` sub-domains (old domain).
-* Google Analytics ID `G-9YE9WNCF35` is the legacy property.
 * Claims that need evidence/consistency: "15+" vs "20+" years (and "since 2005"), "A+ BBB rating", "5.0 Rating", "98% satisfaction",
   "500+ projects", response times (30 / 30–60 / 60 min), "licensed in all 50 states", published prices, and hours (24/7 vs Mon–Fri/Sat).
 * Title tags run up to 145 characters (search results truncate near 60) and many are keyword-stacked.

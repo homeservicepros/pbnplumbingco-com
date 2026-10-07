@@ -10,8 +10,11 @@ Checks (exit code 1 if any hard check fails):
   2. Metadata parity – <title> and meta description identical to legacy on every page.
   3. Copy parity     – every text node of legacy page *content* (chrome excluded) appears in the new page.
   4. Link integrity  – every internal href / src in the new build resolves to a built file.
-  5. SEO hygiene     – one <h1>, canonical on the new domain, valid JSON-LD, images have alt, no old-domain
-                       URLs except the deliberate ones (state sub-domain links, contact e-mail).
+  5. SEO hygiene     – one <h1>, canonical on the new domain, valid JSON-LD, images have alt.
+  6. Domain move     – no trace of the old domain anywhere in dist; every page links all state sub-domains.
+
+Owner-approved differences from the legacy copy (applied to the legacy text before comparing):
+  contact@pbmplumbingco.com → info@buffaloplumbingpros.com · pbmplumbingco.com → buffaloplumbingpros.com · ZIP 14086 → 14228
 """
 from __future__ import annotations
 
@@ -27,6 +30,22 @@ LEGACY = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("/tmp/legacy")
 DIST = Path(sys.argv[2]) if len(sys.argv) > 2 else Path("dist")
 NEW_ORIGIN = "https://buffaloplumbingpros.com"
 OLD_DOMAIN = "pbmplumbingco.com"
+
+REPLACEMENTS = [
+    ("contact@pbmplumbingco.com", "info@buffaloplumbingpros.com"),
+    ("pbmplumbingco.com", "buffaloplumbingpros.com"),
+    ("14086", "14228"),
+]
+STATE_CODES = (
+    "al ak az ar ca co ct de dc fl ga hi id il in ia ks ky la me md ma mi mn ms mo mt ne nv nh nj nm ny nc nd oh ok or pa pr ri sc sd tn tx ut vt va wa wv wi wy"
+).split()
+
+
+def migrated(text: str) -> str:
+    for a, b in REPLACEMENTS:
+        text = text.replace(a, b)
+    return text
+
 
 failures: list[str] = []
 notes: list[str] = []
@@ -88,11 +107,11 @@ for u, lp in legacy_pages.items():
     if u not in dist_pages:
         continue
     ls, ns = load(lp), load(dist_pages[u])
-    lt, nt = norm(ls.title.get_text()), norm(ns.title.get_text())
+    lt, nt = norm(migrated(ls.title.get_text())), norm(ns.title.get_text())
     if lt != nt:
         meta_bad += 1
         fail(f"title differs on {u}\n    old: {lt}\n    new: {nt}")
-    ld, nd = meta_desc(ls), meta_desc(ns)
+    ld, nd = (migrated(meta_desc(ls)) if meta_desc(ls) else None), meta_desc(ns)
     if ld != nd:
         meta_bad += 1
         fail(f"meta description differs on {u}\n    old: {ld}\n    new: {nd}")
@@ -116,7 +135,7 @@ def content_nodes(soup: BeautifulSoup) -> list[str]:
         div.decompose()
     out = []
     for s in body.find_all(string=True):
-        t = norm(str(s))
+        t = norm(migrated(str(s)))
         if not t or not re.search(r"[A-Za-z0-9]", t):  # decorative glyphs/emoji/arrows
             continue
         t = re.sub(r"^[^\w\"'($]+", "", t)
@@ -222,19 +241,34 @@ for u, p in sorted(dist_pages.items()):
     if not soup.find("meta", attrs={"property": "og:image"}):
         seo_bad += 1
         fail(f"{u}: missing og:image")
-    for a in soup.find_all("a", href=True):
-        if OLD_DOMAIN in a["href"]:
-            host = urlparse(a["href"]).netloc or a["href"]
-            old_domain_hits[host] = old_domain_hits.get(host, 0) + 1
     for s in soup.find_all("script", type="application/ld+json"):
-        # the contact e-mail address is legacy copy kept on purpose; URLs must all be on the new domain
-        if re.search(r"https?://[^\"\s]*" + re.escape(OLD_DOMAIN), s.string or ""):
+        if OLD_DOMAIN in (s.string or ""):
             seo_bad += 1
-            fail(f"{u}: JSON-LD still contains a {OLD_DOMAIN} URL")
+            fail(f"{u}: JSON-LD still mentions {OLD_DOMAIN}")
 print(f"[5] SEO hygiene on {len(dist_pages)} pages (1×h1, canonical, JSON-LD, alt, og:image) → {'OK' if not seo_bad else f'{seo_bad} issues'}")
-subs = {h: n for h, n in old_domain_hits.items() if h != "contact@" and not h.startswith("mailto")}
-print(f"    old-domain references kept verbatim from legacy copy: {len(subs)} distinct hosts "
-      f"({sum(subs.values())} links) — state sub-domain links + contact e-mail")
+
+# ------------------------------------------------------------------ 6. domain move
+leaks = []
+for f in DIST.rglob("*"):
+    if f.is_file() and f.suffix in {".html", ".xml", ".txt", ".json", ".webmanifest", ".js", ".css"}:
+        if OLD_DOMAIN in f.read_text(encoding="utf8", errors="ignore"):
+            leaks.append(f.relative_to(DIST).as_posix())
+for f in leaks:
+    fail(f"old domain {OLD_DOMAIN} still referenced in dist/{f}")
+state_pat = re.compile(r"^https://([a-z]{2})\.buffaloplumbingpros\.com/$")
+state_bad = 0
+for u, p in sorted(dist_pages.items()):
+    codes = {m.group(1) for a in load(p).find_all("a", href=True) if (m := state_pat.match(a["href"]))}
+    if codes != set(STATE_CODES):
+        state_bad += 1
+        fail(f"{u}: state links differ — missing {sorted(set(STATE_CODES) - codes)} extra {sorted(codes - set(STATE_CODES))}")
+home = load(dist_pages["/"])
+tiles = [a for a in home.select("#states ul[aria-label='Map of states we serve'] a")]
+if len(tiles) != len(STATE_CODES):
+    fail(f"homepage tile map has {len(tiles)} tiles, expected {len(STATE_CODES)}")
+print(f"[6] Domain move: old domain mentioned in {len(leaks)} dist files; all {len(STATE_CODES)} state sub-domain links present on "
+      f"{len(dist_pages) - state_bad}/{len(dist_pages)} pages; homepage map has {len(tiles)} tiles → "
+      f"{'OK' if not leaks and not state_bad and len(tiles) == len(STATE_CODES) else 'PROBLEMS'}")
 
 # ------------------------------------------------------------------ result
 print()

@@ -8,7 +8,7 @@ import SectionHeading from '../../components/SectionHeading.astro';
 import CallButton from '../../components/CallButton.astro';
 import Brand from '../../components/Brand.astro';
 import Icon from '../../components/Icon.astro';
-import { absoluteUrl } from '../../config/site';
+import { absoluteUrl, embedUrl } from '../../config/site';
 import { getAreas, getAreaLinks, serviceLinks, areaHref } from '../../lib/content';
 import { areaPhoto } from '../../lib/media';
 import { graph, businessNode, websiteNode, webPageNode, breadcrumbNode, areaPlace } from '../../lib/schema';
@@ -138,7 +138,13 @@ const chips = [
     </div>
   </section>
 
-  <MapSection heading={d.mapHeading} subheading={d.mapSubheading} contact={d.mapContact}>
+  <MapSection
+    heading={d.mapHeading}
+    subheading={d.mapSubheading}
+    contact={d.mapContact}
+    mapSrc={embedUrl(`${d.name}, Buffalo, NY ${d.zip}`, 14)}
+    mapTitle={`Map of ${d.name}, Buffalo, NY ${d.zip}`}
+  >
     <div slot="extra" class="card p-6 sm:p-8">
       <h3 class="flex items-center gap-2.5 text-2xl"><Icon name="map" size={22} class="text-amber-600" />{d.nearby.heading}</h3>
       <ul class="mt-5 space-y-1">

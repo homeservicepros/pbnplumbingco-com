@@ -65,10 +65,31 @@ def section_after_header(soup: BeautifulSoup):
     return [s for s in soup.body.find_all("section", recursive=False)]
 
 
+# Intentional, owner-approved differences from the legacy copy (new domain / new business address).
+# Order matters: the e-mail is replaced before the bare domain.
+REPLACEMENTS = [
+    ("contact@pbmplumbingco.com", "info@buffaloplumbingpros.com"),
+    ("pbmplumbingco.com", "buffaloplumbingpros.com"),
+    ("14086", "14228"),  # business ZIP: 140 Irwin Pl, Buffalo, NY 14228
+]
+
+
+def apply_replacements(obj):
+    if isinstance(obj, str):
+        for a, b in REPLACEMENTS:
+            obj = obj.replace(a, b)
+        return obj
+    if isinstance(obj, list):
+        return [apply_replacements(x) for x in obj]
+    if isinstance(obj, dict):
+        return {k: apply_replacements(v) for k, v in obj.items()}
+    return obj
+
+
 def write_json(rel: str, data: dict) -> None:
     path = OUT / rel
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf8")
+    path.write_text(json.dumps(apply_replacements(data), indent=2, ensure_ascii=False) + "\n", encoding="utf8")
 
 
 def remove_comments(root) -> None:

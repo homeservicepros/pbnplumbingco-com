@@ -52,6 +52,7 @@ const canonical = absoluteUrl(path);
 const ogImageUrl = ogPhoto
   ? absoluteUrl((await getImage({ src: photo(ogPhoto), width: 1200, height: 630, fit: 'cover', format: 'jpeg', quality: 82 })).src)
   : absoluteUrl(ogImage);
+const gaId = /^G-[A-Z0-9]{6,}$/.test(SITE.googleAnalyticsId) ? SITE.googleAnalyticsId : '';
 const robots = noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
 ---
 
@@ -97,10 +98,10 @@ const robots = noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview
     {jsonLd.map((doc) => <script type="application/ld+json" set:html={JSON.stringify(doc)} />)}
 
     {
-      import.meta.env.PROD && (
+      import.meta.env.PROD && gaId && (
         <>
-          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.googleAnalyticsId}`} />
-          <script is:inline define:vars={{ gaId: SITE.googleAnalyticsId }}>
+          <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+          <script is:inline define:vars={{ gaId }}>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());

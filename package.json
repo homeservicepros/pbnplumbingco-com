@@ -12,7 +12,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "verify": "python3 -I scripts/verify_parity.py"
+    "verify": "python3 -I scripts/verify_parity.py",
+    "photo": "python3 -I scripts/swap_photo.py"
   },
   "dependencies": {
     "@fontsource/barlow": "^5.3.0",

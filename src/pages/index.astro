@@ -7,10 +7,12 @@ import CallButton from '../components/CallButton.astro';
 import SectionHeading from '../components/SectionHeading.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import Prose from '../components/Prose.astro';
-import { SITE, telHref } from '../config/site';
+import MapEmbed from '../components/MapEmbed.astro';
+import StatesSection from '../components/StatesSection.astro';
+import { SITE, telHref, fullAddress, businessMapSrc, usaMapSrc, googleMapsLink } from '../config/site';
 import { home, serviceLinks, getAreaLinks, GROUP_LABEL, serviceHref, type ServiceGroup } from '../lib/content';
 import { SERVICE_PHOTO, type PhotoName } from '../lib/media';
-import { graph, businessNode, websiteNode, homePageNode } from '../lib/schema';
+import { graph, businessNode, websiteNode, homePageNode, statesNode } from '../lib/schema';
 
 const areas = await getAreaLinks();
 const h = home;
@@ -35,6 +37,7 @@ const jsonLd = [
     businessNode({ areas, services: serviceLinks, withCatalog: true }),
     websiteNode(),
     homePageNode({ name: h.title, description: h.description }),
+    statesNode(),
   ]),
 ];
 ---
@@ -240,7 +243,7 @@ const jsonLd = [
       <SectionHeading kicker="Service area" title={h.findUs.heading} text={h.findUs.subheading} align="center" />
       <div class="mt-12 grid gap-8 lg:grid-cols-3">
         <div class="overflow-hidden rounded-3xl border border-line bg-white shadow-card lg:col-span-2">
-          <iframe class="h-96 w-full lg:h-full lg:min-h-[28rem]" title="Map of Buffalo, NY service area" src={SITE.maps.buffalo} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <MapEmbed src={businessMapSrc(14)} title={`Map: ${SITE.name}, ${fullAddress}`} class="h-96 w-full lg:h-full lg:min-h-[28rem]" />
         </div>
         <div class="space-y-6">
           <div class="card p-7">
@@ -255,6 +258,8 @@ const jsonLd = [
                 <div>
                   <p class="font-bold text-navy-900">{h.findUs.businessName}</p>
                   <p class="text-muted">{h.findUs.serving}</p>
+                  <address class="mt-1 text-sm not-italic text-muted">{fullAddress}</address>
+                  <a href={googleMapsLink} rel="noopener" class="mt-1 inline-flex items-center gap-1 text-sm font-semibold text-brand-700 hover:text-navy-900">Get directions <Icon name="arrow-right" size={14} /></a>
                 </div>
               </li>
               <li class="flex items-start gap-4">
@@ -301,7 +306,7 @@ const jsonLd = [
 
       <div class="mt-12 grid items-stretch gap-8 lg:grid-cols-2 lg:gap-12">
         <div class="overflow-hidden rounded-3xl border border-line shadow-card">
-          <iframe class="h-96 w-full lg:h-full lg:min-h-[26rem]" title="Map of the United States" src={SITE.maps.usa} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <MapEmbed src={usaMapSrc} title="Map of the United States — Buffalo Plumbing PROS nationwide coverage" class="h-96 w-full lg:h-full lg:min-h-[26rem]" />
         </div>
         <div class="card p-7 sm:p-9">
           <h3 class="text-3xl">{h.nationwide.whyHeading}</h3>
@@ -321,19 +326,8 @@ const jsonLd = [
         </div>
       </div>
 
-      <div class="mt-16">
-        <h3 class="text-center text-3xl md:text-4xl">{h.nationwide.statesHeading}</h3>
-        <ul class="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {
-            h.nationwide.states.map((s) => (
-              <li>
-                <a href={s.url} rel="noopener" class="block rounded-xl border border-line bg-white px-3 py-3 text-center font-semibold text-navy-900 shadow-sm transition hover:-translate-y-0.5 hover:border-brand-500 hover:bg-brand-50 hover:text-brand-700">
-                  {s.name}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
+      <div class="mt-20">
+        <StatesSection heading={h.nationwide.statesHeading} />
       </div>
     </div>
   </section>

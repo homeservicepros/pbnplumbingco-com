@@ -1,0 +1,73 @@
+---
+import Icon from './Icon.astro';
+import { STATES, HQ_STATE, GRID, statesAlphabetical, stateUrl } from '../config/states';
+
+interface Props {
+  /** "States We Serve" (legacy heading text) */
+  heading: string;
+}
+const { heading } = Astro.props;
+const hq = STATES.find((s) => s.code === HQ_STATE)!;
+const alphabetical = statesAlphabetical();
+---
+
+<div id="states" class="scroll-mt-28">
+  <h3 class="text-center text-3xl md:text-5xl">{heading}</h3>
+  <p class="mx-auto mt-3 max-w-2xl text-center text-lg text-muted">
+    <span class="font-semibold text-navy-900">{STATES.length} local sites</span> — one for every state, D.C. and Puerto Rico. Pick yours.
+  </p>
+
+  <!-- Tile-grid map: every tile is a link to that state's site (md and up) -->
+  <div class="mt-10 hidden md:block">
+    <ul
+      class="grid gap-1.5 lg:gap-2"
+      style={`grid-template-columns: repeat(${GRID.cols}, minmax(0, 1fr)); grid-template-rows: repeat(${GRID.rows}, auto);`}
+      aria-label="Map of states we serve"
+    >
+      {
+        STATES.map((st) => {
+          const isHq = st.code === HQ_STATE;
+          return (
+            <li style={`grid-column:${st.col + 1};grid-row:${st.row + 1}`}>
+              <a
+                href={stateUrl(st.code)}
+                class:list={[
+                  'group relative flex aspect-[5/4] w-full flex-col items-center justify-center rounded-xl border px-1 text-center shadow-sm transition duration-200 hover:z-10 hover:-translate-y-1 hover:shadow-lift',
+                  isHq
+                    ? 'border-amber-600 bg-amber-500 text-navy-950 hover:bg-amber-400'
+                    : 'border-line bg-white text-navy-900 hover:border-navy-900 hover:bg-navy-900 hover:text-white',
+                ]}
+                title={`Buffalo Plumbing PROS — ${st.name}`}
+              >
+                <span class="font-display text-[1.35rem] font-bold leading-none lg:text-[1.65rem]">{st.code}</span>
+                <span class:list={['sr-only mt-1 text-[0.66rem] font-medium leading-tight lg:not-sr-only', isHq ? 'text-navy-950' : 'text-muted group-hover:text-white/85']}>{st.name}</span>
+                {isHq && <Icon name="map-pin" size={14} class="absolute right-1.5 top-1.5" />}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+    <p class="mt-5 flex items-center justify-center gap-2 text-sm text-muted">
+      <span class="inline-block h-3.5 w-3.5 rounded bg-amber-500 ring-1 ring-amber-600" aria-hidden="true"></span>
+      Headquarters — {hq.name} (Buffalo)
+    </p>
+  </div>
+
+  <!-- A–Z index: descriptive anchor text, always visible (the only view on phones) -->
+  <nav class="card mt-12 p-6 sm:p-8" aria-label="All states we serve, A to Z">
+    <p class="border-b border-line pb-3 font-display text-2xl font-bold uppercase tracking-wider text-navy-900">All states, A–Z</p>
+    <ul class="mt-4 columns-2 gap-x-6 sm:columns-3 lg:columns-4 xl:columns-5">
+      {
+        alphabetical.map((st) => (
+          <li class="break-inside-avoid">
+            <a href={stateUrl(st.code)} class="flex items-center justify-between gap-2 rounded-lg px-2 py-1.5 text-[0.97rem] font-medium text-ink transition hover:bg-brand-50 hover:text-brand-700">
+              <span>{st.name}</span>
+              <span class="hidden text-xs font-semibold uppercase tracking-wider text-muted sm:inline">{st.code}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</div>

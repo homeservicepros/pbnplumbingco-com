@@ -1,22 +1,28 @@
 /**
- * Single source of truth for business facts (NAP), domain and analytics.
- * Every value here was taken from the legacy site; change it here and it changes everywhere
- * (visible text, tel:/mailto: links, JSON-LD).
+ * GA4 Measurement ID fallback (G-XXXXXXXXXX). Leave empty and set PUBLIC_GA_MEASUREMENT_ID in
+ * Cloudflare Pages instead (Settings → Environment variables → Production, then redeploy), or paste the
+ * new ID here. While no ID is set, no analytics script is emitted at all.
+ */
+const GA_MEASUREMENT_ID = '';
+
+/**
+ * Single source of truth for business facts (NAP), domain, analytics and maps.
+ * Change a value here and it changes everywhere (visible text, tel:/mailto: links, JSON-LD, sitemap).
  */
 export const SITE = {
   name: 'Buffalo Plumbing PROS',
-  /** Production origin. Canonical URLs, sitemap and JSON-LD are built from this. */
+  /** Production origin. Canonical URLs, sitemap, JSON-LD and the state sub-domain links are built from this. */
   url: 'https://buffaloplumbingpros.com',
   tagline: 'Expert Residential Plumbing Services Solutions',
   phone: '(716) 610-1160',
   /** E.164 form for tel: links. */
   phoneE164: '+17166101160',
-  email: 'contact@pbmplumbingco.com',
+  email: 'info@buffaloplumbingpros.com',
   address: {
     street: '140 Irwin Pl',
     city: 'Buffalo',
     region: 'NY',
-    postalCode: '14086',
+    postalCode: '14228',
     country: 'US',
   },
   /** Visible hours (homepage #contact section). */
@@ -26,17 +32,37 @@ export const SITE = {
     { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '18:00' },
     { days: ['Saturday'], opens: '08:00', closes: '16:00' },
   ],
-  googleAnalyticsId: 'G-9YE9WNCF35',
+  /** GA4 Measurement ID — see GA_MEASUREMENT_ID above. Only a well-formed `G-…` ID is ever emitted. */
+  googleAnalyticsId: ((import.meta.env.PUBLIC_GA_MEASUREMENT_ID as string | undefined)?.trim() || GA_MEASUREMENT_ID).trim(),
   foundingYear: 2005,
   /** Redesign date — used as sitemap <lastmod> for the migrated pages. */
   lastModified: '2026-10-07',
-  /** Google Maps embeds exactly as on the legacy site. */
-  maps: {
-    buffalo: 'https://maps.google.com/maps?q=Buffalo%2C%20NY%2C%20United%20States&t=&z=13&ie=UTF8&iwloc=&output=embed',
-    usa: 'https://maps.google.com/maps?q=United%20States&t=&z=4&ie=UTF8&iwloc=&output=embed',
-  },
 } as const;
 
 export const telHref = `tel:${SITE.phoneE164}`;
 export const mailHref = `mailto:${SITE.email}`;
 export const absoluteUrl = (path = '/') => new URL(path, SITE.url).toString();
+
+/** "140 Irwin Pl, Buffalo, NY 14228" */
+export const fullAddress = `${SITE.address.street}, ${SITE.address.city}, ${SITE.address.region} ${SITE.address.postalCode}`;
+
+/**
+ * Google Maps embeds.
+ * `embedUrl(query, zoom)` builds the same keyless embed URL the legacy site used
+ * (https://maps.google.com/maps?q=…&output=embed), so every <iframe> works without an API key.
+ * To use Google's own "Share → Embed a map" iframe for the business pin instead, paste just its
+ * src="…" URL into `businessEmbedSrc`; it is then used for every business-location map.
+ */
+export const MAPS = {
+  businessEmbedSrc: '',
+  businessQuery: fullAddress,
+};
+
+export const embedUrl = (query: string, zoom = 13) =>
+  `https://maps.google.com/maps?q=${encodeURIComponent(query)}&t=&z=${zoom}&ie=UTF8&iwloc=&output=embed`;
+
+export const businessMapSrc = (zoom = 14) => MAPS.businessEmbedSrc || embedUrl(MAPS.businessQuery, zoom);
+/** City-wide service-area map (legacy: q=Buffalo, NY, United States, z=13). */
+export const buffaloMapSrc = embedUrl('Buffalo, NY, United States', 13);
+export const usaMapSrc = embedUrl('United States', 4);
+export const googleMapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(fullAddress)}`;

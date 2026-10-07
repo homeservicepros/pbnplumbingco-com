@@ -1,0 +1,11 @@
+---
+/** Google Maps <iframe> embed (keyless URL, lazy-loaded). Build `src` with the helpers in config/site.ts. */
+interface Props {
+  src: string;
+  title: string;
+  class?: string;
+}
+const { src, title, class: className = 'h-96 w-full' } = Astro.props;
+---
+
+<iframe class={className} src={src} title={title} loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>

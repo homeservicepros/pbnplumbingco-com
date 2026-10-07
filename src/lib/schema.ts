@@ -1,4 +1,5 @@
-import { SITE, absoluteUrl } from '../config/site';
+import { SITE, absoluteUrl, googleMapsLink } from '../config/site';
+import { STATES, stateUrl } from '../config/states';
 import { home } from './content';
 
 /** Build JSON-LD (schema.org) nodes. Everything here is derived from visible page content or site config. */
@@ -51,6 +52,7 @@ export function businessNode(opts: { areas: AreaRef[]; services: ServiceRef[]; w
     foundingDate: String(SITE.foundingYear),
     logo: { '@type': 'ImageObject', url: absoluteUrl('/icon-512.png'), width: 512, height: 512 },
     image: absoluteUrl('/og-default.jpg'),
+    hasMap: googleMapsLink,
     address: {
       '@type': 'PostalAddress',
       streetAddress: SITE.address.street,
@@ -138,6 +140,22 @@ export function webPageNode(opts: { url: string; name: string; description: stri
 }
 
 /** The homepage is the entity's main page: it is *about* and *mainEntity of* the business. */
+/** Every state site as an ItemList (the homepage's "States We Serve" section). */
+export function statesNode(): Json {
+  return {
+    '@type': 'ItemList',
+    '@id': `${SITE.url}/#states`,
+    name: 'States We Serve',
+    numberOfItems: STATES.length,
+    itemListElement: STATES.map((st, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: `${SITE.name} — ${st.name}`,
+      url: stateUrl(st.code),
+    })),
+  };
+}
+
 export function homePageNode(opts: { name: string; description: string }): Json {
   return {
     '@type': 'WebPage',
@@ -149,6 +167,7 @@ export function homePageNode(opts: { name: string; description: string }): Json 
     isPartOf: { '@id': ids.website },
     about: { '@id': ids.business },
     mainEntity: { '@id': ids.business },
+    hasPart: { '@id': `${SITE.url}/#states` },
     primaryImageOfPage: { '@type': 'ImageObject', url: absoluteUrl('/og-default.jpg') },
     dateModified: SITE.lastModified,
   };
